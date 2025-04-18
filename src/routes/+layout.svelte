@@ -11,10 +11,13 @@
   const navbarSize = new ElementSize(() => navbarElement);
   rootContext.set(new RootContext(() => navbarSize.height));
 
-  let scrollPos = $state(0);
   function onScrolled() {
-    navbarCoveringContent = Math.floor(window.scrollY) > 0;
-    scrollPos = window.scrollY;
+    let scrollY = Math.floor(window.scrollY);
+    if (scrollY == 1) {
+      scrollY = 0;
+      window.scroll({ top: 0, behavior: "auto" });
+    }
+    navbarCoveringContent = scrollY > 0;
   }
 
   useEventListener(() => document, "scroll", onScrolled);
@@ -25,7 +28,6 @@
 <div class="relative flex flex-col">
   <header class="sticky top-0 left-0 z-50 w-full" bind:this={navbarElement}>
     <Navbar coveringContent={navbarCoveringContent} />
-    {scrollPos}
   </header>
   <div class="w-full max-w-[100rem] grow self-center px-4">
     {@render children()}
