@@ -14,6 +14,8 @@
   function onScrolled() {
     let scrollY = Math.floor(window.scrollY);
     if (scrollY == 1) {
+      // Fix mobile safari oddity with overscroll bounceback
+      // The scroll position would end up at 1 rather than zero when scrolling on a page that fits in the viewport
       scrollY = 0;
       window.scroll({ top: 0, behavior: "auto" });
     }
