@@ -28,7 +28,12 @@
 
 {#snippet sidebarToggle()}
   {@const iconCls = sidebarVisible ? "ri--sidebar-fold-line" : "ri--sidebar-unfold-line"}
-  <button aria-label="Expand sidebar" class="btn btn-square btn-sm" onclick={() => (sidebarVisible = !sidebarVisible)}>
+  <button
+    aria-label="Expand sidebar"
+    class="btn btn-square btn-sm"
+    type="button"
+    onclick={() => (sidebarVisible = !sidebarVisible)}
+  >
     <span aria-hidden="true" class="iconify size-4 {iconCls}"></span>
   </button>
 {/snippet}
