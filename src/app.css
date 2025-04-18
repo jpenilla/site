@@ -1,1 +1,18 @@
-@import 'tailwindcss';
+@import "tailwindcss";
+
+@plugin "@iconify/tailwind4" {
+  prefixes: logos, ri;
+}
+
+@plugin "daisyui" {
+  /* https://daisyui.com/docs/themes/ */
+  themes:
+    light --default,
+    dim --prefersdark;
+}
+
+@theme {
+  --color-discord: #5865f2;
+  --color-modrinth: #00af5c;
+  --color-gradle: #209bc4;
+}

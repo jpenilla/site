@@ -1,0 +1,54 @@
+<script lang="ts">
+  import ProjectCard from "./ProjectCard.svelte";
+  import { projectGroups } from "$lib/projects";
+  import { ElementRect } from "runed";
+
+  let container: HTMLDivElement | null = $state(null);
+  const containerRect = new ElementRect(() => container);
+</script>
+
+<svelte:head>
+  <title>Jason Penilla - Projects</title>
+</svelte:head>
+
+{#snippet sidebar()}
+  <ul class="menu menu-vertical w-max">
+    {#each projectGroups as group (group.id)}
+      <li>
+        <span class="menu-title">{group.name}</span>
+        <ul>
+          {#each group.projects as project (project.name)}
+            <li><a href="#{project.id}">{project.name}</a></li>
+          {/each}
+        </ul>
+      </li>
+    {/each}
+  </ul>
+{/snippet}
+
+{#snippet pageContent()}
+  {#each projectGroups as group (group.id)}
+    <a href="#{group.id}" class="link link-hover">
+      <h2 id={group.id} class="mb-2 flex items-center gap-1 text-xl">
+        <span class="iconify size-6 {group.iconClasses}"></span>{group.name}
+      </h2>
+    </a>
+    <div class="mb-4 grid w-full grid-cols-1 gap-2 lg:grid-cols-2 xl:grid-cols-3">
+      {#each group.projects as project (project.name)}
+        <ProjectCard info={project} />
+      {/each}
+    </div>
+  {/each}
+{/snippet}
+
+<div class="flex" bind:this={container}>
+  <div
+    class="sticky shrink-0 overflow-x-hidden overflow-y-auto"
+    style="height: calc(100dvh - {containerRect.y}px); top: {containerRect.y}px;"
+  >
+    {@render sidebar()}
+  </div>
+  <div class="ms-2 grow">
+    {@render pageContent()}
+  </div>
+</div>
