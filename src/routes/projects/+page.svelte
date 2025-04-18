@@ -29,7 +29,7 @@
 {#snippet sidebarToggle()}
   {@const iconCls = sidebarVisible ? "ri--sidebar-fold-line" : "ri--sidebar-unfold-line"}
   <button
-    aria-label="Expand sidebar"
+    aria-label="Toggle sidebar visibility"
     class="btn btn-square btn-sm"
     type="button"
     onclick={() => (sidebarVisible = !sidebarVisible)}
@@ -81,7 +81,7 @@
     {@render sidebar()}
   </div>
   <div
-    class="sticky z-40 flex shrink-0 flex-col sm:hidden"
+    class="sticky flex shrink-0 flex-col sm:hidden"
     style="height: calc(100dvh - {rootContext.get().navbarHeight}px); top: {rootContext.get().navbarHeight + 8}px;"
   >
     {@render sidebarToggle()}
