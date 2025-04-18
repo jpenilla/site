@@ -92,7 +92,7 @@
   <div class="sticky z-40 h-fit shrink-0 flex-col sm:hidden" style="top: {rootContext.get().navbarHeight + 8}px;">
     {@render sidebarToggle(true)}
   </div>
-  <div class="ms-2 grow sm:ms-0">
+  <div class="ms-2 mt-2 grow sm:ms-0">
     {@render pageContent()}
   </div>
 </div>
