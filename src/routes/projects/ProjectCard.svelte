@@ -31,6 +31,6 @@
         {/each}
       </div>
     </div>
-    <p>{info.description}</p>
+    <p>{@html info.description}</p>
   </div>
 </div>
