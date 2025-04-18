@@ -1,10 +1,7 @@
 <script lang="ts">
   import ProjectCard from "./ProjectCard.svelte";
   import { projectGroups } from "$lib/projects";
-  import { ElementRect } from "runed";
-
-  let container: HTMLDivElement | null = $state(null);
-  const containerRect = new ElementRect(() => container);
+  import { rootContext } from "$lib/context.svelte";
 </script>
 
 <svelte:head>
@@ -41,10 +38,10 @@
   {/each}
 {/snippet}
 
-<div class="flex" bind:this={container}>
+<div class="flex">
   <div
     class="sticky shrink-0 overflow-x-hidden overflow-y-auto"
-    style="height: calc(100dvh - {containerRect.y}px); top: {containerRect.y}px;"
+    style="height: calc(100dvh - {rootContext.get().navbarHeight}px); top: {rootContext.get().navbarHeight}px;"
   >
     {@render sidebar()}
   </div>
