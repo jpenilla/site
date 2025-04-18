@@ -28,7 +28,7 @@
 </script>
 
 <div class="relative flex flex-col">
-  <header class="sticky top-0 left-0 z-50 w-full" bind:this={navbarElement}>
+  <header class="sticky top-0 left-0 z-100 w-full" bind:this={navbarElement}>
     <Navbar coveringContent={navbarCoveringContent} />
   </header>
   <div class="w-full max-w-[100rem] grow self-center px-4">
