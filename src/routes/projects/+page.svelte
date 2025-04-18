@@ -3,6 +3,7 @@
   import { projectGroups } from "$lib/projects";
   import { rootContext } from "$lib/context.svelte";
   import { onClickOutside } from "runed";
+  import { fade } from "svelte/transition";
 
   let scrollMarginStyle = $derived(`scroll-margin-top: calc(4rem + ${rootContext.get().navbarHeight}px);`);
 
@@ -33,10 +34,10 @@
 {/snippet}
 
 {#snippet sidebar()}
-  <ul class="menu menu-vertical w-max p-0">
-    <li class="sticky top-0 z-10 w-full bg-base-100 py-2 sm:hidden">
-      {@render sidebarToggle(false)}
-    </li>
+  <div class="sticky top-0 z-10 w-full bg-base-100 pt-2 pb-2 sm:hidden sm:pb-0">
+    {@render sidebarToggle(false)}
+  </div>
+  <ul class="menu menu-vertical w-max pt-0 sm:pt-2">
     {#each projectGroups as group (group.id)}
       <li>
         <a class="font-semibold" href="#{group.id}" onclick={hideSidebar}>{group.name}</a>
@@ -65,15 +66,25 @@
   {/each}
 {/snippet}
 
-<div class="flex">
+{#snippet sidebarContainer()}
   <div
     class="fixed z-50 shrink-0 overflow-y-auto bg-base-100/80 backdrop-blur sm:sticky sm:block"
     style="height: calc(100dvh - {rootContext.get().navbarHeight}px); top: {rootContext.get().navbarHeight}px;"
     bind:this={sidebarElement}
     class:hidden={!sidebarVisible}
+    transition:fade={{ duration: 100 }}
   >
     {@render sidebar()}
   </div>
+{/snippet}
+
+<div class="flex">
+  <!-- Dumb hack to let transitions work with changing style.display -->
+  {#if sidebarVisible}
+    {@render sidebarContainer()}
+  {:else}
+    {@render sidebarContainer()}
+  {/if}
   <div class="sticky z-40 h-fit shrink-0 flex-col sm:hidden" style="top: {rootContext.get().navbarHeight + 8}px;">
     {@render sidebarToggle(true)}
   </div>
