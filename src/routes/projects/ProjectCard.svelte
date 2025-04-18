@@ -1,14 +1,15 @@
 <script lang="ts">
   import type { ProjectInfo } from "$lib/projects";
+  import type { RestProps } from "$lib/types";
 
-  interface Props {
+  interface Props extends RestProps {
     info: ProjectInfo;
   }
 
-  let { info }: Props = $props();
+  let { info, ...restProps }: Props = $props();
 </script>
 
-<div id={info.id} class="card bg-base-200 shadow-sm">
+<div id={info.id} {...restProps} class="card bg-base-200 shadow-sm">
   <div class="card-body">
     <div>
       <span class="card-title">{info.name}</span>

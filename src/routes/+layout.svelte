@@ -13,8 +13,10 @@
   const navbarSize = new ElementSize(() => navbarElement);
   rootContext.set(new RootContext(() => navbarSize.height));
 
+  let scrollPos = $state(0);
   function onScrolled() {
-    navbarCoveringContent = window.scrollY > 0;
+    navbarCoveringContent = Math.floor(window.scrollY) > 0;
+    scrollPos = window.scrollY;
   }
   onMount(() => {
     const remove = on(document, "scroll", onScrolled);
@@ -24,9 +26,10 @@
   });
 </script>
 
-<div class="relative flex flex-col" style="scroll-margin-top: calc(4rem + {navbarSize.height}px);">
+<div class="relative flex flex-col">
   <header class="sticky top-0 left-0 z-50 w-full" bind:this={navbarElement}>
     <Navbar coveringContent={navbarCoveringContent} />
+    {scrollPos}
   </header>
   <div class="w-full max-w-[100rem] grow self-center px-4">
     {@render children()}

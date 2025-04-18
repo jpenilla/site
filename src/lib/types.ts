@@ -1,6 +1,8 @@
 import type { Component } from "svelte";
 import ModrinthIcon from "$lib/components/ModrinthIcon.svelte";
 
+export type RestProps = Record<PropertyKey, unknown>;
+
 export class Link {
   constructor(
     public readonly text: string,

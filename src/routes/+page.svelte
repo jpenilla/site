@@ -20,7 +20,7 @@
 </div>
 
 <h2 class="text-xl font-semibold">Education</h2>
-<div class="card m-2 bg-base-200">
+<div class="card card-sm m-2 bg-base-200">
   <div class="card-body">
     <ASULogo class="h-8 w-fit" />
     <div class="flex flex-col">
