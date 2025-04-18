@@ -26,8 +26,12 @@
   <button
     aria-label="Toggle sidebar visibility"
     class="btn btn-square btn-sm"
+    class:pointer-events-none={show ? sidebarVisible : !sidebarVisible}
     type="button"
-    onclick={() => (sidebarVisible = show)}
+    onclick={(e) => {
+      sidebarVisible = show;
+      e.stopPropagation();
+    }}
   >
     <span aria-hidden="true" class="iconify size-4 {iconCls}"></span>
   </button>
