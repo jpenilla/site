@@ -9,10 +9,10 @@
   let { info, ...restProps }: Props = $props();
 </script>
 
-<div id={info.id} {...restProps} class="card bg-base-200 shadow-sm">
+<div id={info.id} class="card bg-base-200 shadow-sm" {...restProps}>
   <div class="card-body">
     <div>
-      <span class="card-title">{info.name}</span>
+      <a class="card-title link link-hover" href="#{info.id}">{info.name}</a>
       <div class="flex flex-wrap gap-2 text-nowrap">
         <a href={info.githubUrl} target="_blank" class="flex w-max link items-center link-hover">
           <span class="me-1 iconify size-4 logos--github-icon"></span>

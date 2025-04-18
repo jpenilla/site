@@ -14,7 +14,7 @@
   <ul class="menu menu-vertical w-max">
     {#each projectGroups as group (group.id)}
       <li>
-        <span class="menu-title">{group.name}</span>
+        <a class="font-semibold" href="#{group.id}">{group.name}</a>
         <ul>
           {#each group.projects as project (project.name)}
             <li><a href="#{project.id}">{project.name}</a></li>
