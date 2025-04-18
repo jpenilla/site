@@ -1,9 +1,7 @@
 <script lang="ts">
   import "../app.css";
   import Navbar from "./Navbar.svelte";
-  import { ElementSize } from "runed";
-  import { onMount } from "svelte";
-  import { on } from "svelte/events";
+  import { ElementSize, useEventListener } from "runed";
   import { RootContext, rootContext } from "$lib/context.svelte";
 
   let { children } = $props();
@@ -18,12 +16,10 @@
     navbarCoveringContent = Math.floor(window.scrollY) > 0;
     scrollPos = window.scrollY;
   }
-  onMount(() => {
-    const remove = on(document, "scroll", onScrolled);
-    return () => {
-      remove();
-    };
-  });
+
+  useEventListener(() => document, "scroll", onScrolled);
+  useEventListener(() => document, "scrollend", onScrolled);
+  useEventListener(() => document, "resize", onScrolled);
 </script>
 
 <div class="relative flex flex-col">
