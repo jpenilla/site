@@ -4,7 +4,8 @@ export class RootContext {
   constructor(private readonly navbarHeightGetter: () => number) {}
 
   get navbarHeight(): number {
-    return this.navbarHeightGetter();
+    // Default to 72 before the DOM is ready (measured in-browser), prevents layout shift
+    return this.navbarHeightGetter() || 72;
   }
 }
 
