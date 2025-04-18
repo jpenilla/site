@@ -13,7 +13,7 @@
 <ContactInfo class="m-2 mb-4" />
 
 <h2 class="text-xl font-semibold">Open Source Organizations</h2>
-<div class="m-2 mb-4 flex flex-wrap gap-2">
+<div class="m-2 mb-4 grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
   {#each organizations as org, index (index)}
     <OpenSourceOrg {org} />
   {/each}
