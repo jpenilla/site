@@ -80,10 +80,7 @@
   >
     {@render sidebar()}
   </div>
-  <div
-    class="sticky flex shrink-0 flex-col sm:hidden"
-    style="height: calc(100dvh - {rootContext.get().navbarHeight}px); top: {rootContext.get().navbarHeight + 8}px;"
-  >
+  <div class="sticky h-fit shrink-0 flex-col sm:hidden" style="top: {rootContext.get().navbarHeight + 8}px;">
     {@render sidebarToggle()}
   </div>
   <div class="ms-2 grow">
