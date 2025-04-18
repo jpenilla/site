@@ -27,12 +27,12 @@
 
 {#snippet pageContent()}
   {#each projectGroups as group (group.id)}
-    <a href="#{group.id}" class="link link-hover">
-      <h2 id={group.id} class="mb-2 flex items-center gap-1 text-xl" style={scrollMarginStyle}>
+    <a href="#{group.id}" class="btn mb-2 btn-ghost">
+      <h2 id={group.id} class="flex items-center gap-1 text-xl" style={scrollMarginStyle}>
         <span class="iconify size-6 {group.iconClasses}"></span>{group.name}
       </h2>
     </a>
-    <div class="mb-4 grid w-full grid-cols-1 gap-2 lg:grid-cols-2 xl:grid-cols-3">
+    <div class="mb-6 grid w-full grid-cols-1 gap-2 lg:grid-cols-2 xl:grid-cols-3">
       {#each group.projects as project (project.name)}
         <ProjectCard info={project} style={scrollMarginStyle} />
       {/each}
