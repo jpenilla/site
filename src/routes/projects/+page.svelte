@@ -9,13 +9,7 @@
   // Only takes effect on mobile
   let sidebarVisible = $state(false);
   let sidebarElement: HTMLElement | null = $state(null);
-
-  onClickOutside(
-    () => sidebarElement,
-    () => {
-      sidebarVisible = false;
-    },
-  );
+  onClickOutside(() => sidebarElement, hideSidebar);
 
   function hideSidebar() {
     sidebarVisible = false;
@@ -26,13 +20,13 @@
   <title>Jason Penilla - Projects</title>
 </svelte:head>
 
-{#snippet sidebarToggle()}
-  {@const iconCls = sidebarVisible ? "ri--sidebar-fold-line" : "ri--sidebar-unfold-line"}
+{#snippet sidebarToggle(show: boolean)}
+  {@const iconCls = show ? "ri--sidebar-unfold-line" : "ri--sidebar-fold-line"}
   <button
     aria-label="Toggle sidebar visibility"
     class="btn btn-square btn-sm"
     type="button"
-    onclick={() => (sidebarVisible = !sidebarVisible)}
+    onclick={() => (sidebarVisible = show)}
   >
     <span aria-hidden="true" class="iconify size-4 {iconCls}"></span>
   </button>
@@ -41,7 +35,7 @@
 {#snippet sidebar()}
   <ul class="menu menu-vertical w-max p-0">
     <li class="sticky top-0 z-10 w-full bg-base-100 py-2 sm:hidden">
-      {@render sidebarToggle()}
+      {@render sidebarToggle(false)}
     </li>
     {#each projectGroups as group (group.id)}
       <li>
@@ -80,8 +74,8 @@
   >
     {@render sidebar()}
   </div>
-  <div class="sticky h-fit shrink-0 flex-col sm:hidden" style="top: {rootContext.get().navbarHeight + 8}px;">
-    {@render sidebarToggle()}
+  <div class="sticky z-40 h-fit shrink-0 flex-col sm:hidden" style="top: {rootContext.get().navbarHeight + 8}px;">
+    {@render sidebarToggle(true)}
   </div>
   <div class="ms-2 grow">
     {@render pageContent()}
