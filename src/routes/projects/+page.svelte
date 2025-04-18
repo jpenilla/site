@@ -41,7 +41,7 @@
   <div class="sticky top-0 z-10 w-full bg-base-100 pt-2 pb-2 sm:hidden sm:pb-0">
     {@render sidebarToggle(false)}
   </div>
-  <ul class="menu menu-vertical w-max pt-0 sm:pt-2">
+  <ul class="menu menu-vertical w-max ps-0 pe-2 pt-0 pb-2 sm:pt-2">
     {#each projectGroups as group (group.id)}
       <li>
         <a class="font-semibold" href="#{group.id}" onclick={hideSidebar}>{group.name}</a>
@@ -92,7 +92,7 @@
   <div class="sticky z-40 h-fit shrink-0 flex-col sm:hidden" style="top: {rootContext.get().navbarHeight + 8}px;">
     {@render sidebarToggle(true)}
   </div>
-  <div class="ms-2 grow">
+  <div class="ms-2 grow sm:ms-0">
     {@render pageContent()}
   </div>
 </div>
