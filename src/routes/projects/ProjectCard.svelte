@@ -31,6 +31,7 @@
         {/each}
       </div>
     </div>
+    <!-- eslint-disable-next-line svelte/no-at-html-tags -->
     <p>{@html info.description}</p>
   </div>
 </div>
