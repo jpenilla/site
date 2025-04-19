@@ -9,7 +9,7 @@
   <title>Jason Penilla</title>
 </svelte:head>
 
-<h2 class="text-xl font-semibold">Full-Stack Developer</h2>
+<h2 class="mt-2 text-xl font-semibold">Full-Stack Developer</h2>
 <ContactInfo class="m-2 mb-4" />
 
 <h2 class="text-xl font-semibold">Open Source Organizations</h2>
