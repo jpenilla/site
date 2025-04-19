@@ -7,11 +7,11 @@
 <div {...restProps}>
   <ul class="flex flex-col gap-1">
     <li>
-      <a class="flex w-fit items-center gap-1" href="mailto:admin@jpenilla.xyz">
+      <a class="flex w-fit items-center gap-1" href="mailto:admin@jpenilla.com">
         <span class="iconify size-6 bg-primary ri--mail-send-line"></span>
         <span class="font-semibold">Email</span>
         <span class="text-base-content/50">-</span>
-        <span class="link-parent-hover link">admin@jpenilla.xyz</span>
+        <span class="link-parent-hover link">admin@jpenilla.com</span>
       </a>
     </li>
     <li>
