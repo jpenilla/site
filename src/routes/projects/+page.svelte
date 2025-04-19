@@ -4,6 +4,7 @@
   import { rootContext } from "$lib/context.svelte";
   import { onClickOutside } from "runed";
   import { fade } from "svelte/transition";
+  import { ScrollArea } from "bits-ui";
 
   let scrollMarginStyle = $derived(`scroll-margin-top: calc(4rem + ${rootContext.get().navbarHeight}px);`);
 
@@ -38,10 +39,7 @@
 {/snippet}
 
 {#snippet sidebar()}
-  <div class="sticky top-0 z-10 w-full bg-base-100 pt-2 pb-2 sm:hidden sm:pb-0">
-    {@render sidebarToggle(false)}
-  </div>
-  <ul class="menu menu-vertical w-max ps-0 pe-2 pt-0 pb-2 sm:pt-2">
+  <ul class="menu menu-vertical w-max ps-0 pe-2 pt-0 pb-8 sm:pt-2">
     {#each projectGroups as group (group.id)}
       <li>
         <a class="font-semibold" href="#{group.id}" onclick={hideSidebar}>{group.name}</a>
@@ -72,13 +70,26 @@
 
 {#snippet sidebarContainer()}
   <div
-    class="fixed z-50 shrink-0 overflow-y-auto bg-base-100/80 backdrop-blur sm:sticky sm:block"
+    class="fixed z-50 shrink-0 bg-base-100/80 backdrop-blur sm:sticky sm:block"
     style="height: calc(100dvh - {rootContext.get().navbarHeight}px); top: {rootContext.get().navbarHeight}px;"
     bind:this={sidebarElement}
     class:hidden={!sidebarVisible}
     transition:fade={{ duration: 100 }}
   >
-    {@render sidebar()}
+    <div class="flex size-full flex-col">
+      <div class="w-full bg-base-100 pt-2 pb-2 sm:hidden sm:pb-0">
+        {@render sidebarToggle(false)}
+      </div>
+      <ScrollArea.Root class="grow overflow-hidden" type="hover">
+        <ScrollArea.Viewport class="h-full" children={sidebar} />
+        <ScrollArea.Scrollbar
+          orientation="vertical"
+          class="m-0.5 flex w-2.5 touch-none rounded-full border-l border-l-transparent p-px transition-all duration-200 select-none hover:w-3 hover:bg-base-300"
+        >
+          <ScrollArea.Thumb forceMount class="flex-1 rounded-full bg-base-content/50" />
+        </ScrollArea.Scrollbar>
+      </ScrollArea.Root>
+    </div>
   </div>
 {/snippet}
 
