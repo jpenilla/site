@@ -45,6 +45,7 @@
     .navlink {
       text-decoration-thickness: 2px;
       text-underline-offset: 3px;
+      text-decoration-color: var(--color-primary);
     }
 
     .navlink:hover {
