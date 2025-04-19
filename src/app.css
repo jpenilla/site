@@ -8,7 +8,7 @@
   /* https://daisyui.com/docs/themes/ */
   themes:
     light --default,
-    dim --prefersdark;
+    dark --prefersdark;
 }
 
 @theme {
