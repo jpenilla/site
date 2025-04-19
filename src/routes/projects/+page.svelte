@@ -69,7 +69,7 @@
 {#snippet sidebar()}
   <!-- TODO: Make the view transition work again -->
   <div
-    class="fixed z-50 shrink-0 bg-base-100/80 backdrop-blur data-[sidebar-visible=false]:hidden sm:sticky"
+    class="fixed z-50 shrink-0 bg-base-100/80 backdrop-blur data-[sidebar-visible=false]:hidden sm:sticky sm:data-[sidebar-visible=false]:block"
     style="height: calc(100dvh - {rootCtx.navbarHeight}px); top: {rootCtx.navbarHeight}px;"
     data-sidebar-visible={sidebarVisibleEffecitve}
     bind:this={sidebarElement}
