@@ -9,7 +9,7 @@
   let { info, ...restProps }: Props = $props();
 </script>
 
-<div id={info.id} class="card bg-base-200 shadow-sm" {...restProps}>
+<div id={info.id} class="card bg-base-200" {...restProps}>
   <div class="card-body">
     <div>
       <a class="card-title link link-hover" href="#{info.id}">{info.name}</a>
