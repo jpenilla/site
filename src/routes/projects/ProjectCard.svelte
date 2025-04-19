@@ -1,6 +1,5 @@
 <script lang="ts">
-  import type { ProjectInfo } from "$lib/projects";
-  import type { RestProps } from "$lib/types";
+  import { type RestProps, ProjectInfo } from "$lib/types";
 
   interface Props extends RestProps {
     info: ProjectInfo;

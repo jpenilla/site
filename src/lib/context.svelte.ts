@@ -1,7 +1,22 @@
 import { Context } from "runed";
+import { SvelteSet } from "svelte/reactivity";
 
 export class RootContext {
+  private contentUnderNavbar = new SvelteSet<string>();
+
   constructor(private readonly navbarHeightGetter: () => number) {}
+
+  updateContentUnderNavbar(content: string, add: boolean): void {
+    if (add) {
+      this.contentUnderNavbar.add(content);
+    } else {
+      this.contentUnderNavbar.delete(content);
+    }
+  }
+
+  get isContentUnderNavbar(): boolean {
+    return this.contentUnderNavbar.size !== 0;
+  }
 
   get navbarHeight(): number {
     // Default to 68 before the DOM is ready (measured in-browser), prevents layout shift

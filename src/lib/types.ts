@@ -1,6 +1,13 @@
 import type { Component } from "svelte";
 import ModrinthIcon from "$lib/components/ModrinthIcon.svelte";
 
+export type Getter<T> = () => T;
+export type MaybeGetter<T> = T | Getter<T>;
+
+export function extract<T>(value: MaybeGetter<T>): T {
+  return typeof value === "function" ? (value as Getter<T>)() : value;
+}
+
 export type RestProps = Record<PropertyKey, unknown>;
 
 export class Link {
