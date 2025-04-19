@@ -84,7 +84,7 @@
         <ScrollArea.Viewport class="h-full" children={sidebar} />
         <ScrollArea.Scrollbar
           orientation="vertical"
-          class="m-0.5 flex w-2.5 touch-none rounded-full border-l border-l-transparent p-px transition-all duration-200 select-none hover:w-3 hover:bg-base-300"
+          class="m-0.5 flex w-1.5 touch-none rounded-full border-l border-l-transparent p-px transition-all duration-200 select-none hover:w-2.5 hover:bg-base-300 [&:has(:active)]:w-2.5 [&:has(:active)]:bg-base-300"
         >
           <ScrollArea.Thumb forceMount class="flex-1 rounded-full bg-base-content/50" />
         </ScrollArea.Scrollbar>
