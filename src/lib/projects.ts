@@ -3,6 +3,7 @@ import { Link, ProjectGroup, ProjectInfo, Tech } from "./types";
 const gradle = new Tech("Gradle", "iconify logos--gradle bg-gradle", "https://gradle.org");
 const bun = new Tech("Bun", "iconify-color logos--bun", "https://bun.sh");
 const svelteKit = new Tech("SvelteKit", "iconify-color logos--svelte-icon", "https://svelte.dev");
+const tailwind = new Tech("Tailwind CSS", "iconify-color logos--tailwindcss-icon", "https://tailwindcss.com");
 const java = new Tech("Java", "iconify-color logos--java", "https://java.com");
 const kotlin = new Tech("Kotlin", "iconify-color logos--kotlin-icon", "https://kotlinlang.org");
 const springBoot = new Tech(
@@ -61,15 +62,15 @@ export const webApps: ProjectInfo[] = [
     "patch-roulette",
     "Featureful and performant multi-file diff viewer",
     [],
-    [svelteKit, bun, java, springBoot, gradle],
+    [svelteKit, tailwind, bun, java, springBoot, gradle],
   ),
   new ProjectInfo(
     "site",
     "jpenilla",
     "site",
-    "Personal portfolio website built with SvelteKit (this website)",
+    "Personal portfolio website (this website)",
     [],
-    [svelteKit, bun],
+    [svelteKit, tailwind, bun],
   ),
 ];
 
