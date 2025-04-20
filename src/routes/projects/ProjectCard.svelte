@@ -32,5 +32,16 @@
     </div>
     <!-- eslint-disable-next-line svelte/no-at-html-tags -->
     <p>{@html info.description}</p>
+    {#if info.technologies.length > 0}
+      <ul class="menu menu-horizontal card-actions w-fit menu-sm rounded-sm bg-base-100 p-1">
+        {#each info.technologies as tech, index (index)}
+          <li class="tooltip" data-tip={tech.name}>
+            <a aria-label={tech.name} href={tech.url} target="_blank" class="p-0.5">
+              <span aria-hidden="true" class="size-4 {tech.iconClasses}"></span>
+            </a>
+          </li>
+        {/each}
+      </ul>
+    {/if}
   </div>
 </div>

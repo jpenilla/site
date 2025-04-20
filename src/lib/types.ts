@@ -39,6 +39,14 @@ export class Link {
   }
 }
 
+export class Tech {
+  constructor(
+    public readonly name: string,
+    public readonly iconClasses: string,
+    public readonly url: string,
+  ) {}
+}
+
 export class ProjectInfo {
   constructor(
     public readonly name: string,
@@ -46,6 +54,7 @@ export class ProjectInfo {
     public readonly githubRepo: string,
     public readonly description: string,
     public readonly links: Link[] = [],
+    public readonly technologies: Tech[] = [],
   ) {}
 
   get id(): string {

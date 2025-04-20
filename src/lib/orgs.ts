@@ -5,7 +5,7 @@ export const organizations = [
     "PaperMC",
     "Maintainer",
     "https://papermc.io",
-    "Lead development of <a href='/projects#paperweight' class='link'>paperweight</a> and <a href='/projects#patch-roulette' class='link'>Patch Roulette</a>, general build tooling, maintenance of the Paper Minecraft server software",
+    "Lead development of <a href='/projects#paperweight' class='link'>paperweight</a> and <a href='/projects#patch-roulette' class='link'>Patch Roulette</a>, general build tooling, maintenance of the <a href='https://papermc.io/software/paper' class='link' target='_blank'>Paper</a> Minecraft server software",
   ),
   new Organization(
     "Incendo",
