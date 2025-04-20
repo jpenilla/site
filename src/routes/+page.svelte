@@ -22,7 +22,9 @@
 <h2 class="text-xl font-semibold">Education</h2>
 <div class="card m-2 bg-base-200 card-sm">
   <div class="card-body">
-    <ASULogo class="h-8 w-fit" />
+    <h3 aria-label="Arizona State University" class="h-8 w-full">
+      <ASULogo aria-hidden="true" class="h-full w-fit max-w-full" />
+    </h3>
     <div class="flex flex-col">
       <span class="font-semibold">W.P. Carey School of Business</span>
       <span>Bachelor of Science in Computer Information Systems, Graduating Fall 2025</span>
