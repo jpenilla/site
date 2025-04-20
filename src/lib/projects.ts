@@ -1,4 +1,5 @@
 import { Link, ProjectGroup, ProjectInfo, Tech } from "./types";
+import PatchRoulette from "./projects/PatchRoulette.svx";
 
 const tech = {
   gradle: new Tech("Gradle", "iconify logos--gradle bg-gradle", "https://gradle.org"),
@@ -55,10 +56,10 @@ export const gradlePlugins: ProjectInfo[] = [
 
 export const webApps: ProjectInfo[] = [
   new ProjectInfo(
-    "Patch Roulette Diff Viewer",
+    "Patch Roulette",
     "PaperMC",
     "patch-roulette",
-    "Featureful and performant multi-file diff viewer",
+    PatchRoulette,
     [],
     [tech.svelteKit, tech.tailwind, tech.bun, tech.java, tech.springBoot, tech.gradle],
   ),

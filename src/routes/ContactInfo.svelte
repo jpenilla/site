@@ -15,7 +15,12 @@
       </a>
     </li>
     <li>
-      <a class="flex w-fit items-center gap-1" href="https://github.com/jpenilla" target="_blank">
+      <a
+        class="flex w-fit items-center gap-1"
+        href="https://github.com/jpenilla"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <span class="iconify size-6 logos--github-icon"></span>
         <span class="font-semibold">GitHub</span>
         <span class="text-base-content/50">-</span>
@@ -23,7 +28,12 @@
       </a>
     </li>
     <li>
-      <a class="flex w-fit items-center gap-1" href="https://discord.com/users/jmp_" target="_blank">
+      <a
+        class="flex w-fit items-center gap-1"
+        href="https://discord.com/users/jmp_"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <span class="iconify size-6 bg-discord logos--discord-icon"></span>
         <span class="font-semibold text-discord">Discord</span>
         <span class="text-base-content/50">-</span>
@@ -31,7 +41,12 @@
       </a>
     </li>
     <li>
-      <a class="flex w-fit items-center gap-1" href="https://modrinth.com/user/jpenilla" target="_blank">
+      <a
+        class="flex w-fit items-center gap-1"
+        href="https://modrinth.com/user/jpenilla"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <ModrinthIcon class="size-6 text-modrinth" />
         <span class="font-semibold text-modrinth">Modrinth</span>
         <span class="text-base-content/50">-</span>

@@ -52,7 +52,7 @@ export class ProjectInfo {
     public readonly name: string,
     public readonly githubOwner: string,
     public readonly githubRepo: string,
-    public readonly description: string,
+    public readonly description: string | Component,
     public readonly links: Link[] = [],
     public readonly technologies: Tech[] = [],
   ) {}

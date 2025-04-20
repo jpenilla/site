@@ -10,7 +10,12 @@
 
 <div class="card bg-base-200 card-sm">
   <div class="card-body">
-    <a class="flex link flex-row items-center gap-2 link-hover" href={org.url} target="_blank">
+    <a
+      class="flex link flex-row items-center gap-2 link-hover"
+      href={org.url}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       <img src="https://github.com/{org.name}.png" alt="{org.name} logo" class="size-8" />
       <div class="flex flex-col gap-0.5 leading-none">
         <h3 class="card-title">{org.name}</h3>
