@@ -12,7 +12,7 @@
   <div class="card-body">
     <div>
       <a class="card-title link link-hover" href="#{info.id}">{info.name}</a>
-      <div class="flex flex-wrap gap-2 text-nowrap">
+      <div class="flex flex-wrap gap-x-2 text-nowrap">
         <a href={info.githubUrl} target="_blank" class="flex w-max link items-center link-hover">
           <span class="me-1 iconify size-4 logos--github-icon"></span>
           {info.githubOwner}<span class="mx-0.5 text-base-content/50">/</span>{info.githubRepo}
