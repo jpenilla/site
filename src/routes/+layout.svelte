@@ -18,6 +18,10 @@
   });
 </script>
 
+<svelte:head>
+  <meta name="description" content="Jason Penilla personal portfolio" />
+</svelte:head>
+
 <div class="relative flex flex-col">
   <header class="sticky top-0 left-0 z-100 w-full" bind:this={navbarElement}>
     <Navbar coveringContent={rootCtx.isContentUnderNavbar} />
