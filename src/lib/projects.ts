@@ -1,5 +1,6 @@
 import { Link, ProjectGroup, ProjectInfo, Tech } from "./types";
 import ModrinthIcon from "./components/ModrinthIcon.svelte";
+import { groupWithMetadata, type MetadataMapper } from "$lib/util";
 
 const tech: Record<string, Tech> = {
   gradle: new Tech("Gradle", "iconify logos--gradle bg-gradle", "https://gradle.org"),
@@ -15,10 +16,23 @@ const allProjects = import.meta.glob("/src/projects/*/*.svx", {
   eager: true,
 });
 
-const gradlePlugins = importGroup(allProjects, "gradle-plugins");
-const webApps = importGroup(allProjects, "web-apps");
-const libraries = importGroup(allProjects, "libraries");
-const minecraftMods = importGroup(allProjects, "minecraft-mods");
+const getProjectInfo: MetadataMapper<ProjectInfo> = (metadata, component) => {
+  return new ProjectInfo(
+    metadata.name,
+    component,
+    metadata.githubOwner,
+    metadata.githubRepo,
+    (metadata.links ?? []).map(makeLink),
+    metadata.technologies.map((technology: string) => {
+      return tech[technology];
+    }),
+  );
+};
+
+const gradlePlugins = groupWithMetadata(allProjects, "gradle-plugins", getProjectInfo);
+const webApps = groupWithMetadata(allProjects, "web-apps", getProjectInfo);
+const libraries = groupWithMetadata(allProjects, "libraries", getProjectInfo);
+const minecraftMods = groupWithMetadata(allProjects, "minecraft-mods", getProjectInfo);
 
 export const projectGroups = [
   new ProjectGroup("Web Apps", webApps, "ri--compass-line bg-primary"),
@@ -46,50 +60,4 @@ function makeLink(link: { type: string; value: string }) {
     default:
       throw new Error(`Unknown link type: ${link.type}`);
   }
-}
-
-function getProjectInfo(project: unknown): ProjectInfo {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
-  const meta = project.metadata;
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
-  const desc = project.default;
-
-  return new ProjectInfo(
-    meta.name,
-    desc,
-    meta.githubOwner,
-    meta.githubRepo,
-    (meta.links ?? []).map(makeLink),
-    meta.technologies.map((technology: string) => {
-      return tech[technology];
-    }),
-  );
-}
-
-function importGroup(allProjects: Record<string, unknown>, path: string, order: string[] = []) {
-  const importsMap = new Map<string, unknown>();
-  for (const filePath of Object.keys(allProjects)) {
-    const search = `/${path}/`;
-    const idx = filePath.indexOf(search);
-    if (idx === -1) continue;
-    const slug = filePath.slice(idx + search.length, filePath.length - 4);
-    importsMap.set(slug, allProjects[filePath]);
-  }
-
-  const ret: ProjectInfo[] = [];
-
-  for (const string of order) {
-    const entry = importsMap.get(string);
-    if (entry) {
-      importsMap.delete(string);
-      ret.push(getProjectInfo(entry));
-    }
-  }
-  for (const entry of importsMap.values()) {
-    ret.push(getProjectInfo(entry));
-  }
-
-  return ret;
 }

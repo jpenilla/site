@@ -1,0 +1,8 @@
+---
+name: PaperMC
+role: Maintainer
+link: https://papermc.io
+---
+
+Lead development of [paperweight](/projects#paperweight) and [Patch Roulette](/projects#patch-roulette), general build
+tooling, maintenance of the [Paper](https://papermc.io/software/paper) Minecraft server software

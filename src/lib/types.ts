@@ -62,6 +62,6 @@ export class Organization {
     public readonly name: string,
     public readonly role: string,
     public readonly url: string,
-    public readonly description: string,
+    public readonly description: Component,
   ) {}
 }

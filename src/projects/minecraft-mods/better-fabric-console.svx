@@ -9,4 +9,5 @@ links:
   - { type: "modrinth", value: "better-fabric-console" }
 ---
 
-Server-side Fabric mod enhancing the console with tab completions, colored log output, command syntax highlighting, command history, and more
+Server-side Fabric mod enhancing the console with tab completions, colored log output, command syntax highlighting,
+command history, and more

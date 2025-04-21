@@ -1,7 +1,7 @@
 <script>
   import ContactInfo from "./ContactInfo.svelte";
   import OpenSourceOrg from "./OpenSourceOrg.svelte";
-  import { organizations } from "$lib/orgs.js";
+  import { organizations } from "$lib/orgs";
   import ASULogo from "$lib/components/ASULogo.svelte";
 </script>
 

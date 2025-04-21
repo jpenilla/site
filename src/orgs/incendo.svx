@@ -1,0 +1,7 @@
+---
+name: Incendo
+role: Maintainer
+link: https://github.com/Incendo
+---
+
+Lead maintenance of [Cloud Command Framework](/projects#cloud-command-framework) and it's platform adapters
