@@ -25,8 +25,8 @@
     <h3 aria-label="Arizona State University" class="h-8 w-full">
       <ASULogo aria-hidden="true" class="h-full w-fit max-w-full" />
     </h3>
-    <div class="flex flex-col">
-      <span class="font-semibold">W.P. Carey School of Business</span>
+    <div class="prose prose-sm flex flex-col">
+      <span class="font-semibold text-base-content">W.P. Carey School of Business</span>
       <span>Bachelor of Science in Computer Information Systems, Graduating Fall 2025</span>
     </div>
   </div>
