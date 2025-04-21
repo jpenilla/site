@@ -31,7 +31,10 @@
   </NavigationMenu.Item>
 {/snippet}
 
-<div class="w-full bg-base-100/80 backdrop-blur transition-shadow" class:shadow-xs={coveringContent}>
+<div
+  class="w-full bg-base-100/80 backdrop-blur transition-shadow data-[covering-content=true]:shadow-xs"
+  data-covering-content={coveringContent}
+>
   <NavigationMenu.Root class="navroot mx-auto max-w-[100rem]">
     <NavigationMenu.List class="flex items-end gap-4 p-4">
       {@render title()}
