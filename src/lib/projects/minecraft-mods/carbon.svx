@@ -9,4 +9,4 @@ links:
   - { type: "modrinth", value: "carbon" }
 ---
 
-Featureful chat enhancement mod with support for multiple mod loaders and the Velocity proxy, cross-server chat, an extensible API, and more
+Featureful chat enhancement mod with support for multiple mod loaders and the [Velocity](https://papermc.io/software/velocity) proxy, cross-server chat, an extensible API, and more

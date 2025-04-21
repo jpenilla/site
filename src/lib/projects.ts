@@ -38,6 +38,7 @@ function makeLink(link: { type: string; value: string }) {
   } else if (link.type === "gpp-search") {
     return Link.gppSearch(link.value);
   }
+  throw new Error(`Unknown link type: ${link.type}`);
 }
 
 export function getProjectInfo(project: unknown): ProjectInfo {
