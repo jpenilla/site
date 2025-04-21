@@ -10,18 +10,14 @@ const tech: Record<string, Tech> = {
   springBoot: new Tech("Spring Boot", "iconify-color logos--spring-icon", "https://spring.io/projects/spring-boot"),
 };
 
-const gradlePlugins = import.meta.glob("/src/lib/projects/gradle-plugins/*.svx", {
+const allProjects = import.meta.glob("/src/lib/projects/*/*.svx", {
   eager: true,
 });
-const webApps = import.meta.glob("/src/lib/projects/web-apps/*.svx", {
-  eager: true,
-});
-const libraries = import.meta.glob("/src/lib/projects/libraries/*.svx", {
-  eager: true,
-});
-const minecraftMods = import.meta.glob("/src/lib/projects/minecraft-mods/*.svx", {
-  eager: true,
-});
+
+const gradlePlugins = importGroup(allProjects, "gradle-plugins");
+const webApps = importGroup(allProjects, "web-apps");
+const libraries = importGroup(allProjects, "libraries");
+const minecraftMods = importGroup(allProjects, "minecraft-mods");
 
 export const projectGroups = [
   new ProjectGroup("Web Apps", webApps, "ri--compass-line bg-primary"),
@@ -55,4 +51,30 @@ export function getProjectInfo(project: unknown): ProjectInfo {
       return tech[technology];
     }),
   );
+}
+
+function importGroup(allProjects: Record<string, unknown>, path: string, order: string[] = []) {
+  const importsMap = new Map<string, unknown>();
+  for (const filePath of Object.keys(allProjects)) {
+    const search = `/${path}/`;
+    const idx = filePath.indexOf(search);
+    if (idx === -1) continue;
+    const slug = filePath.slice(idx + search.length, filePath.length - 4);
+    importsMap.set(slug, allProjects[filePath]);
+  }
+
+  const ret: unknown[] = [];
+
+  for (const string of order) {
+    const entry = importsMap.get(string);
+    if (entry) {
+      importsMap.delete(string);
+      ret.push(entry);
+    }
+  }
+  for (const entry of importsMap.values()) {
+    ret.push(entry);
+  }
+
+  return ret;
 }

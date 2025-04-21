@@ -59,8 +59,7 @@
       </h2>
     </a>
     <div class="mb-6 grid w-full grid-cols-1 gap-2 lg:grid-cols-2 xl:grid-cols-3">
-      {#each Object.keys(group.projects) as projectKey (projectKey)}
-        {@const project = group.projects[projectKey]}
+      {#each group.projects as project (project.metadata.name)}
         {@const info = getProjectInfo(project)}
         <ProjectCard {info} description={project.default} style={scrollMarginStyle} />
       {/each}
@@ -88,8 +87,8 @@
               <li>
                 <a class="font-semibold" href="#{group.id}" onclick={hideSidebar}>{group.name}</a>
                 <ul>
-                  {#each Object.keys(group.projects) as projectKey (projectKey)}
-                    {@const info = getProjectInfo(group.projects[projectKey])}
+                  {#each group.projects as project (project.metadata.name)}
+                    {@const info = getProjectInfo(project)}
                     <li><a href="#{info.id}" onclick={hideSidebar}>{info.name}</a></li>
                   {/each}
                 </ul>

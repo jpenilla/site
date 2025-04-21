@@ -68,7 +68,7 @@ export class ProjectInfo {
 export class ProjectGroup {
   constructor(
     public readonly name: string,
-    public readonly projects: Record<string, unknown>,
+    public readonly projects: unknown[],
     public readonly iconClasses: string,
   ) {}
 
