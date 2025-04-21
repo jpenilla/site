@@ -3,10 +3,10 @@
   import { projectGroups } from "$lib/projects";
   import { rootContext } from "$lib/context.svelte";
   import { onClickOutside } from "runed";
-  import { fade } from "svelte/transition";
   import { ScrollArea } from "bits-ui";
   import { ScrollPos } from "$lib/scroll-watcher.svelte";
   import { MediaQuery } from "svelte/reactivity";
+  import { withViewTransition } from "$lib/util.js";
 
   const rootCtx = rootContext.get();
   let scrollMarginStyle = $derived(`scroll-margin-top: calc(4rem + ${rootCtx.navbarHeight}px);`);
@@ -42,7 +42,9 @@
     class:pointer-events-none={show ? sidebarVisible : !sidebarVisible}
     type="button"
     onclick={(e) => {
-      sidebarVisible = show;
+      withViewTransition(() => {
+        sidebarVisible = show;
+      });
       e.stopPropagation();
     }}
   >
@@ -66,13 +68,11 @@
 {/snippet}
 
 {#snippet sidebar()}
-  <!-- TODO: Make the view transition work again -->
   <div
     class="fixed z-50 shrink-0 bg-base-100/80 backdrop-blur data-[sidebar-visible=false]:hidden sm:sticky sm:data-[sidebar-visible=false]:block"
     style="height: calc(100dvh - {rootCtx.navbarHeight}px); top: {rootCtx.navbarHeight}px;"
     data-sidebar-visible={sidebarVisibleEffecitve}
     bind:this={sidebarElement}
-    transition:fade={{ duration: 100 }}
   >
     <div class="flex size-full flex-col border-r border-base-300/80 sm:border-none">
       <div class="w-full bg-base-100 pt-2 pb-2 sm:hidden sm:pb-0">
@@ -113,3 +113,12 @@
     {@render pageContent()}
   </div>
 </div>
+
+<style>
+  :global {
+    ::view-transition-old(*),
+    ::view-transition-new(*) {
+      animation-duration: 200ms;
+    }
+  }
+</style>
