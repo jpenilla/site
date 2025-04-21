@@ -1,0 +1,12 @@
+---
+name: site
+githubOwner: jpenilla
+githubRepo: site
+technologies:
+  - svelteKit
+  - tailwind
+  - bun
+---
+
+Personal portfolio website (this website)
+

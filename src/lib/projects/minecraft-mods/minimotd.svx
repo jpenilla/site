@@ -1,0 +1,12 @@
+---
+name: MiniMOTD
+githubOwner: jpenilla
+githubRepo: MiniMOTD
+technologies:
+  - java
+  - gradle
+links:
+  - { type: "modrinth", value: "minimotd" }
+---
+
+Allows customizing the server icon and 'message of the day' text (shown on the server list) using MiniMessage

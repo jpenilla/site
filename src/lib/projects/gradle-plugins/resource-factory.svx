@@ -1,0 +1,11 @@
+---
+name: resource-factory
+githubOwner: jpenilla
+githubRepo: resource-factory
+technologies:
+  - kotlin
+links:
+  - { type: "gpp-search", value: "xyz.jpenilla.resource-factory" }
+---
+
+Gradle plugin for generating resources at build time

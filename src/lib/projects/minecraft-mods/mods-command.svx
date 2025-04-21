@@ -1,0 +1,12 @@
+---
+name: Mods Command
+githubOwner: jpenilla
+githubRepo: mods-command
+technologies:
+  - java
+  - gradle
+links:
+  - { type: "modrinth", value: "mods-command" }
+---
+
+Fabric mod adding commands to list, search, and get information about installed mods

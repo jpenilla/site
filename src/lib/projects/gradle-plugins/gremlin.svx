@@ -1,0 +1,12 @@
+---
+name: gremlin
+githubOwner: jpenilla
+githubRepo: gremlin
+technologies:
+  - java
+  - kotlin
+links:
+  - { type: "gpp", value: "xyz.jpenilla.gremlin-gradle" }
+---
+
+Gradle plugin and Java library for resolving Gradle Configurations at runtime

@@ -1,3 +1,16 @@
+---
+name: Patch Roulette
+githubOwner: PaperMC
+githubRepo: patch-roulette
+technologies:
+  - svelteKit
+  - tailwind
+  - bun
+  - java
+  - springBoot
+  - gradle
+---
+
 Patch Roulette has two main components:
 - Web frontend and REST API for managing [Paper](https://papermc.io/software/paper) updates
 - Featureful and performant web-based multi-file diff viewer

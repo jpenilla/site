@@ -1,0 +1,12 @@
+---
+name: CarbonChat
+githubOwner: Hexaoxide
+githubRepo: Carbon
+technologies:
+  - java
+  - gradle
+links:
+  - { type: "modrinth", value: "carbon" }
+---
+
+Featureful chat enhancement mod with support for multiple mod loaders and the Velocity proxy, cross-server chat, an extensible API, and more

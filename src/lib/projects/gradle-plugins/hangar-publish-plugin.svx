@@ -1,0 +1,12 @@
+---
+name: hangar-publish-plugin
+githubOwner: HangarMC
+githubRepo: hangar-publish-plugin
+technologies:
+  - java
+  - kotlin
+links:
+  - { type: "gpp", value: "io.papermc.hangar-publish-plugin" }
+---
+
+Gradle plugin for automated publishing to [Hangar](https://hangar.papermc.io)

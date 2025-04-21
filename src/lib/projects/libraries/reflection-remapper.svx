@@ -1,0 +1,10 @@
+---
+name: reflection-remapper
+githubOwner: jpenilla
+githubRepo: reflection-remapper
+technologies:
+  - java
+  - gradle
+---
+
+Java reflection library with support for obfuscation mappings

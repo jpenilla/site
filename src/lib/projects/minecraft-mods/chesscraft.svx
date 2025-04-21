@@ -1,0 +1,12 @@
+---
+name: ChessCraft
+githubOwner: jpenilla
+githubRepo: chesscraft
+technologies:
+  - java
+  - gradle
+links:
+  - { type: "modrinth", value: "chesscraft" }
+---
+
+Adds in-world chess matches between players and or CPUs

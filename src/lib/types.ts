@@ -52,7 +52,6 @@ export class ProjectInfo {
     public readonly name: string,
     public readonly githubOwner: string,
     public readonly githubRepo: string,
-    public readonly description: string | Component,
     public readonly links: Link[] = [],
     public readonly technologies: Tech[] = [],
   ) {}
@@ -69,7 +68,7 @@ export class ProjectInfo {
 export class ProjectGroup {
   constructor(
     public readonly name: string,
-    public readonly projects: ProjectInfo[],
+    public readonly projects: Record<string, unknown>,
     public readonly iconClasses: string,
   ) {}
 

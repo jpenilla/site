@@ -1,0 +1,11 @@
+---
+name: run-task
+githubOwner: jpenilla
+githubRepo: run-task
+technologies:
+  - kotlin
+links:
+  - { type: "gpp-search", value: "xyz.jpenilla.run-" }
+---
+
+Gradle plugins adding tasks to run Minecraft server and proxy software

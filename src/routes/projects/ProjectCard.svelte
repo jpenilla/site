@@ -1,11 +1,15 @@
 <script lang="ts">
   import { type RestProps, ProjectInfo } from "$lib/types";
+  import type { Component } from "svelte";
 
   interface Props extends RestProps {
     info: ProjectInfo;
+    description: Component;
   }
 
-  let { info, ...restProps }: Props = $props();
+  let { info, description, ...restProps }: Props = $props();
+
+  const Description = description;
 </script>
 
 <div id={info.id} class="card bg-base-200" {...restProps}>
@@ -40,13 +44,7 @@
         {/each}
       </div>
     </div>
-    {#if typeof info.description === "string"}
-      <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-      <p class="my-4 prose prose-sm">{@html info.description}</p>
-    {:else}
-      {@const DescriptionComponent = info.description}
-      <DescriptionComponent class="my-4 prose-sm" />
-    {/if}
+    <Description class="my-4 prose prose-sm grow" />
     {#if info.technologies.length > 0}
       <ul class="menu menu-horizontal card-actions w-fit menu-sm rounded-sm bg-base-100 p-1">
         {#each info.technologies as tech, index (index)}

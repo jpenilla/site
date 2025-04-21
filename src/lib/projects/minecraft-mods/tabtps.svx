@@ -1,0 +1,12 @@
+---
+name: TabTPS
+githubOwner: jpenilla
+githubRepo: TabTPS
+technologies:
+  - java
+  - gradle
+links:
+  - { type: "modrinth", value: "tabtps" }
+---
+
+Utility to monitor real-time server performance in-game

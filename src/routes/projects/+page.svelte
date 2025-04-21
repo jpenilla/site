@@ -1,6 +1,6 @@
 <script lang="ts">
   import ProjectCard from "./ProjectCard.svelte";
-  import { projectGroups } from "$lib/projects";
+  import { getProjectInfo, projectGroups } from "$lib/projects";
   import { rootContext } from "$lib/context.svelte";
   import { onClickOutside } from "runed";
   import { fade } from "svelte/transition";
@@ -59,8 +59,10 @@
       </h2>
     </a>
     <div class="mb-6 grid w-full grid-cols-1 gap-2 lg:grid-cols-2 xl:grid-cols-3">
-      {#each group.projects as project (project.name)}
-        <ProjectCard info={project} style={scrollMarginStyle} />
+      {#each Object.keys(group.projects) as projectKey (projectKey)}
+        {@const project = group.projects[projectKey]}
+        {@const info = getProjectInfo(project)}
+        <ProjectCard {info} description={project.default} style={scrollMarginStyle} />
       {/each}
     </div>
   {/each}
@@ -86,8 +88,9 @@
               <li>
                 <a class="font-semibold" href="#{group.id}" onclick={hideSidebar}>{group.name}</a>
                 <ul>
-                  {#each group.projects as project (project.name)}
-                    <li><a href="#{project.id}" onclick={hideSidebar}>{project.name}</a></li>
+                  {#each Object.keys(group.projects) as projectKey (projectKey)}
+                    {@const info = getProjectInfo(group.projects[projectKey])}
+                    <li><a href="#{info.id}" onclick={hideSidebar}>{info.name}</a></li>
                   {/each}
                 </ul>
               </li>

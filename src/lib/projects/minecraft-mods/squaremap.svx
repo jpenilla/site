@@ -1,0 +1,12 @@
+---
+name: squaremap
+githubOwner: jpenilla
+githubRepo: squaremap
+technologies:
+  - java
+  - gradle
+links:
+  - { type: "modrinth", value: "squaremap" }
+---
+
+World map renderer and web viewer for Minecraft servers
