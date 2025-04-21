@@ -50,6 +50,7 @@ export class Tech {
 export class ProjectInfo {
   constructor(
     public readonly name: string,
+    public readonly description: Component,
     public readonly githubOwner: string,
     public readonly githubRepo: string,
     public readonly links: Link[] = [],
@@ -68,7 +69,7 @@ export class ProjectInfo {
 export class ProjectGroup {
   constructor(
     public readonly name: string,
-    public readonly projects: unknown[],
+    public readonly projects: ProjectInfo[],
     public readonly iconClasses: string,
   ) {}
 

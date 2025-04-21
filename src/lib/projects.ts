@@ -37,13 +37,17 @@ function makeLink(link: { type: string; value: string }) {
   throw new Error(`Unknown link type: ${link.type}`);
 }
 
-export function getProjectInfo(project: unknown): ProjectInfo {
+function getProjectInfo(project: unknown): ProjectInfo {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-expect-error
   const meta = project.metadata;
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
+  const desc = project.default;
 
   return new ProjectInfo(
     meta.name,
+    desc,
     meta.githubOwner,
     meta.githubRepo,
     (meta.links ?? []).map(makeLink),
@@ -63,17 +67,17 @@ function importGroup(allProjects: Record<string, unknown>, path: string, order: 
     importsMap.set(slug, allProjects[filePath]);
   }
 
-  const ret: unknown[] = [];
+  const ret: ProjectInfo[] = [];
 
   for (const string of order) {
     const entry = importsMap.get(string);
     if (entry) {
       importsMap.delete(string);
-      ret.push(entry);
+      ret.push(getProjectInfo(entry));
     }
   }
   for (const entry of importsMap.values()) {
-    ret.push(entry);
+    ret.push(getProjectInfo(entry));
   }
 
   return ret;
