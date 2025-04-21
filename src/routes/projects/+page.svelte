@@ -23,12 +23,11 @@
 
   let viewport: HTMLElement | null = $state(null);
   const viewportScrollPos = new ScrollPos(() => viewport);
-  $effect(() => {
-    rootCtx.updateContentUnderNavbar("projects-sidebar-scroll", viewportScrollPos.scrollY > 0);
-  });
-  $effect(() => {
-    rootCtx.updateContentUnderNavbar("projects-sidebar-media-query", !twSm.current && sidebarVisible);
-  });
+  rootCtx.watchContentUnderNavbar(
+    "projects-sidebar-scroll",
+    () => viewportScrollPos.scrollY > 0 && sidebarVisibleEffecitve,
+  );
+  rootCtx.watchContentUnderNavbar("projects-sidebar-media-query", () => !twSm.current && sidebarVisible);
 </script>
 
 <svelte:head>

@@ -1,13 +1,23 @@
 import { Context } from "runed";
 import { SvelteSet } from "svelte/reactivity";
+import { onDestroy } from "svelte";
 
 export class RootContext {
   private contentUnderNavbar = new SvelteSet<string>();
 
   constructor(private readonly navbarHeightGetter: () => number) {}
 
-  updateContentUnderNavbar(content: string, add: boolean): void {
-    if (add) {
+  watchContentUnderNavbar(content: string, underNavbar: () => boolean) {
+    $effect(() => {
+      this.updateContentUnderNavbar(content, underNavbar());
+    });
+    onDestroy(() => {
+      this.contentUnderNavbar.delete(content);
+    });
+  }
+
+  updateContentUnderNavbar(content: string, underNavbar: boolean) {
+    if (underNavbar) {
       this.contentUnderNavbar.add(content);
     } else {
       this.contentUnderNavbar.delete(content);

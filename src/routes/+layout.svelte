@@ -13,9 +13,7 @@
   const rootCtx = rootContext.get();
 
   const windowScrollPos = new ScrollPos(() => window);
-  $effect(() => {
-    rootCtx.updateContentUnderNavbar("body", windowScrollPos.scrollY > 0);
-  });
+  rootCtx.watchContentUnderNavbar("body", () => windowScrollPos.scrollY > 0);
 </script>
 
 <svelte:head>
