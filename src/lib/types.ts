@@ -1,5 +1,4 @@
 import type { Component } from "svelte";
-import ModrinthIcon from "$lib/components/ModrinthIcon.svelte";
 
 export type Getter<T> = () => T;
 export type MaybeGetter<T> = T | Getter<T>;
@@ -17,26 +16,6 @@ export class Link {
     public readonly iconClasses: string = "",
     public readonly iconComponent?: Component,
   ) {}
-
-  static gppSearch(query: string): Link {
-    return new Link(
-      "Gradle Plugin Portal",
-      `https://plugins.gradle.org/search?term=${query}`,
-      "iconify logos--gradle bg-gradle",
-    );
-  }
-
-  static gpp(id: string): Link {
-    return new Link(
-      "Gradle Plugin Portal",
-      `https://plugins.gradle.org/plugin/${id}`,
-      "iconify logos--gradle bg-gradle",
-    );
-  }
-
-  static modrinth(id: string): Link {
-    return new Link("Modrinth", `https://modrinth.com/mod/${id}`, "text-modrinth", ModrinthIcon);
-  }
 }
 
 export class Tech {

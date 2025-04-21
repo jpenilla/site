@@ -1,4 +1,5 @@
 import { Link, ProjectGroup, ProjectInfo, Tech } from "./types";
+import ModrinthIcon from "./components/ModrinthIcon.svelte";
 
 const tech: Record<string, Tech> = {
   gradle: new Tech("Gradle", "iconify logos--gradle bg-gradle", "https://gradle.org"),
@@ -27,14 +28,24 @@ export const projectGroups = [
 ];
 
 function makeLink(link: { type: string; value: string }) {
-  if (link.type === "modrinth") {
-    return Link.modrinth(link.value);
-  } else if (link.type === "gpp") {
-    return Link.gpp(link.value);
-  } else if (link.type === "gpp-search") {
-    return Link.gppSearch(link.value);
+  switch (link.type) {
+    case "modrinth":
+      return new Link("Modrinth", `https://modrinth.com/mod/${link.value}`, "text-modrinth", ModrinthIcon);
+    case "gpp":
+      return new Link(
+        "Gradle Plugin Portal",
+        `https://plugins.gradle.org/plugin/${link.value}`,
+        "iconify logos--gradle bg-gradle",
+      );
+    case "gpp-search":
+      return new Link(
+        "Gradle Plugin Portal",
+        `https://plugins.gradle.org/search?term=${link.value}`,
+        "iconify logos--gradle bg-gradle",
+      );
+    default:
+      throw new Error(`Unknown link type: ${link.type}`);
   }
-  throw new Error(`Unknown link type: ${link.type}`);
 }
 
 function getProjectInfo(project: unknown): ProjectInfo {
