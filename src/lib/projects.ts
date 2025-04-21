@@ -11,7 +11,7 @@ const tech: Record<string, Tech> = {
   springBoot: new Tech("Spring Boot", "iconify-color logos--spring-icon", "https://spring.io/projects/spring-boot"),
 };
 
-const allProjects = import.meta.glob("/src/lib/projects/*/*.svx", {
+const allProjects = import.meta.glob("/src/projects/*/*.svx", {
   eager: true,
 });
 
