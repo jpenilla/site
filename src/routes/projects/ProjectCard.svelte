@@ -47,8 +47,8 @@
       <ul class="menu menu-horizontal card-actions w-fit menu-sm rounded-sm bg-base-100 p-1">
         {#each project.technologies as tech, index (index)}
           <li class="tooltip" data-tip={tech.name}>
-            <a aria-label="{tech.name} Website" href={tech.url} target="_blank" rel="noopener noreferrer" class="p-0.5">
-              <span aria-hidden="true" class="size-4 {tech.iconClasses}"></span>
+            <a aria-label="{tech.name} Website" href={tech.url} target="_blank" rel="noopener noreferrer" class="p-1">
+              <span aria-hidden="true" class="size-5 {tech.iconClasses}"></span>
             </a>
           </li>
         {/each}
