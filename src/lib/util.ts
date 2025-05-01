@@ -1,15 +1,4 @@
-import { type Component, tick } from "svelte";
-
-export function withViewTransition(callback: () => void) {
-  if (document.startViewTransition) {
-    document.startViewTransition(async () => {
-      callback();
-      await tick();
-    });
-  } else {
-    callback();
-  }
-}
+import { type Component } from "svelte";
 
 export interface MetadataMapper<R> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

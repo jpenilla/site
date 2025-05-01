@@ -4,9 +4,7 @@
   import { rootContext } from "$lib/context.svelte";
   import { onClickOutside } from "runed";
   import { ScrollArea } from "bits-ui";
-  import { ScrollPos } from "$lib/scroll-watcher.svelte";
   import { MediaQuery } from "svelte/reactivity";
-  import { withViewTransition } from "$lib/util.js";
 
   const rootCtx = rootContext.get();
   let scrollMarginStyle = $derived(`scroll-margin-top: calc(4rem + ${rootCtx.navbarHeight}px);`);
@@ -15,42 +13,24 @@
   const twSm = new MediaQuery("(width >= 40rem)");
   let sidebarVisibleEffecitve = $derived(twSm.current || sidebarVisible);
   let sidebarElement: HTMLElement | null = $state(null);
-  onClickOutside(() => sidebarElement, hideSidebar);
+  onClickOutside(
+    () => sidebarElement,
+    (e) => {
+      if (e.target instanceof HTMLElement && e.target.closest("[data-sidebar-toggle]")) {
+        return;
+      }
+      hideSidebar();
+    },
+  );
 
   function hideSidebar() {
     sidebarVisible = false;
   }
-
-  let viewport: HTMLElement | null = $state(null);
-  const viewportScrollPos = new ScrollPos(() => viewport);
-  rootCtx.watchContentUnderNavbar(
-    "projects-sidebar-scroll",
-    () => viewportScrollPos.scrollY > 0 && sidebarVisibleEffecitve,
-  );
-  rootCtx.watchContentUnderNavbar("projects-sidebar-media-query", () => !twSm.current && sidebarVisible);
 </script>
 
 <svelte:head>
   <title>Jason Penilla - Projects</title>
 </svelte:head>
-
-{#snippet sidebarToggle(show: boolean)}
-  {@const iconCls = show ? "ri--sidebar-unfold-line" : "ri--sidebar-fold-line"}
-  <button
-    aria-label="Toggle sidebar visibility"
-    class="btn btn-square btn-sm"
-    class:pointer-events-none={show ? sidebarVisible : !sidebarVisible}
-    type="button"
-    onclick={(e) => {
-      withViewTransition(() => {
-        sidebarVisible = show;
-      });
-      e.stopPropagation();
-    }}
-  >
-    <span aria-hidden="true" class="iconify size-4 {iconCls}"></span>
-  </button>
-{/snippet}
 
 {#snippet pageContent()}
   {#each projectGroups as group (group.id)}
@@ -69,18 +49,16 @@
 
 {#snippet sidebar()}
   <div
-    class="fixed z-50 shrink-0 bg-base-100/80 backdrop-blur data-[sidebar-visible=false]:hidden sm:sticky sm:data-[sidebar-visible=false]:block"
-    style="height: calc(100dvh - {rootCtx.navbarHeight}px); top: {rootCtx.navbarHeight}px;"
+    class="pointer-events-none fixed z-50 shrink-0 -translate-x-0 transition duration-150 ease-in-out data-[sidebar-visible=false]:-translate-x-[110%] sm:sticky"
+    style="height: calc(100dvh - {rootCtx.navbarHeight + 36}px); top: {rootCtx.navbarHeight + 8}px;"
     data-sidebar-visible={sidebarVisibleEffecitve}
-    bind:this={sidebarElement}
   >
-    <div class="flex size-full flex-col border-r border-base-300/80 sm:border-none">
-      <div class="w-full bg-base-100 pt-2 pb-2 sm:hidden sm:pb-0">
-        {@render sidebarToggle(false)}
-      </div>
-      <ScrollArea.Root class="grow overflow-hidden" type="auto">
-        <ScrollArea.Viewport class="h-full" bind:ref={viewport}>
-          <ul class="menu menu-vertical w-max ps-0 pe-2 pt-0 pb-8 sm:pt-2">
+    <div class="flex size-full flex-col pt-10 transition duration-150 ease-in-out sm:pt-0" bind:this={sidebarElement}>
+      <ScrollArea.Root class="pointer-events-auto grow overflow-hidden " type="auto">
+        <ScrollArea.Viewport
+          class="h-full max-h-max rounded-box border border-base-300 bg-base-200/80 backdrop-blur duration-150 ease-in-out sm:border-0 sm:bg-base-200 sm:backdrop-blur-none"
+        >
+          <ul class="menu menu-vertical w-max p-2">
             {#each projectGroups as group (group.id)}
               <li>
                 <a class="font-semibold" href="#{group.id}" onclick={hideSidebar}>{group.name}</a>
@@ -95,30 +73,40 @@
         </ScrollArea.Viewport>
         <ScrollArea.Scrollbar
           orientation="vertical"
-          class="m-0.5 flex w-1.5 touch-none border-l border-l-transparent transition-all duration-200 select-none hover:w-2.5 hover:bg-base-300 [&:has(:active)]:w-2.5 [&:has(:active)]:bg-base-300"
+          class="m-1 flex w-1.5 touch-none rounded-md border-l border-l-transparent transition-all duration-150 select-none hover:w-2.5 hover:bg-base-300 [&:has(:active)]:w-2.5 [&:has(:active)]:bg-base-300"
         >
-          <ScrollArea.Thumb forceMount class="flex-1 bg-base-content/50 transition-colors active:bg-primary" />
+          <ScrollArea.Thumb
+            forceMount
+            class="flex-1 rounded-md bg-base-content/50 transition-colors active:bg-primary"
+          />
         </ScrollArea.Scrollbar>
       </ScrollArea.Root>
     </div>
   </div>
 {/snippet}
 
+{#snippet sidebarToggle()}
+  {@const iconCls = sidebarVisibleEffecitve ? "ri--sidebar-fold-line" : "ri--sidebar-unfold-line"}
+  <button
+    aria-label="Toggle sidebar visibility"
+    class="btn btn-square btn-sm"
+    type="button"
+    onclick={(e) => {
+      sidebarVisible = !sidebarVisible;
+      e.stopPropagation();
+    }}
+    data-sidebar-toggle
+  >
+    <span aria-hidden="true" class="iconify size-4 {iconCls}"></span>
+  </button>
+{/snippet}
+
 <div class="flex">
   {@render sidebar()}
   <div class="sticky z-40 h-fit shrink-0 flex-col sm:hidden" style="top: {rootCtx.navbarHeight + 8}px;">
-    {@render sidebarToggle(true)}
+    {@render sidebarToggle()}
   </div>
   <div class="ms-2 mt-2 grow">
     {@render pageContent()}
   </div>
 </div>
-
-<style>
-  :global {
-    ::view-transition-old(*),
-    ::view-transition-new(*) {
-      animation-duration: 200ms;
-    }
-  }
-</style>
