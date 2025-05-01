@@ -7,6 +7,7 @@ technologies:
   - gradle
 links:
   - { type: "modrinth", value: "squaremap" }
+  - { type: "demo", value: "https://squaremap-demo.jpenilla.com" }
 ---
 
 World map renderer and web viewer for Minecraft servers

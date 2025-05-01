@@ -57,6 +57,8 @@ function makeLink(link: { type: string; value: string }) {
         `https://plugins.gradle.org/search?term=${link.value}`,
         "iconify logos--gradle bg-gradle",
       );
+    case "demo":
+      return new Link("Demo", link.value, "iconify ri--shapes-fill bg-primary");
     default:
       throw new Error(`Unknown link type: ${link.type}`);
   }
