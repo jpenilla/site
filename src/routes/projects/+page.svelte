@@ -11,7 +11,7 @@
 
   let sidebarVisible = $state(false);
   const twSm = new MediaQuery("(width >= 40rem)");
-  let sidebarVisibleEffecitve = $derived(twSm.current || sidebarVisible);
+  let sidebarVisibleEffective = $derived(twSm.current || sidebarVisible);
   let sidebarElement: HTMLElement | null = $state(null);
   onClickOutside(
     () => sidebarElement,
@@ -51,7 +51,7 @@
   <div
     class="pointer-events-none fixed z-50 shrink-0 -translate-x-0 transition duration-150 ease-in-out data-[sidebar-visible=false]:-translate-x-[110%] sm:sticky"
     style="height: calc(100dvh - {rootCtx.navbarHeight + 36}px); top: {rootCtx.navbarHeight + 8}px;"
-    data-sidebar-visible={sidebarVisibleEffecitve}
+    data-sidebar-visible={sidebarVisibleEffective}
   >
     <div class="flex size-full flex-col pt-10 transition duration-150 ease-in-out sm:pt-0" bind:this={sidebarElement}>
       <ScrollArea.Root class="pointer-events-auto grow overflow-hidden " type="auto">
@@ -86,7 +86,7 @@
 {/snippet}
 
 {#snippet sidebarToggle()}
-  {@const iconCls = sidebarVisibleEffecitve ? "ri--sidebar-fold-line" : "ri--sidebar-unfold-line"}
+  {@const iconCls = sidebarVisibleEffective ? "ri--sidebar-fold-line" : "ri--sidebar-unfold-line"}
   <button
     aria-label="Toggle sidebar visibility"
     class="btn btn-square btn-sm"
