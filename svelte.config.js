@@ -2,9 +2,13 @@ import adapter from "@sveltejs/adapter-cloudflare";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 import { mdsvex } from "mdsvex";
 import rehypeExternalLinks from "rehype-external-links";
+import { join, dirname } from "path";
+import { fileURLToPath } from "url";
+
+const cwd = dirname(fileURLToPath(import.meta.url));
 
 const mdsvexConfig = {
-  layout: "src/lib/components/MarkdownWrapper.svelte",
+  layout: join(cwd, "./src/lib/components/MarkdownWrapper.svelte"),
   rehypePlugins: [
     [
       rehypeExternalLinks,
