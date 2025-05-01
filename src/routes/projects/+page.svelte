@@ -49,7 +49,7 @@
 
 {#snippet sidebar()}
   <div
-    class="pointer-events-none fixed z-50 shrink-0 -translate-x-0 transition duration-150 ease-in-out data-[sidebar-visible=false]:-translate-x-[110%] sm:sticky"
+    class="pointer-events-none fixed z-50 shrink-0 -translate-x-0 transition duration-150 ease-in-out data-[sidebar-visible=false]:-translate-x-[110%] sm:sticky data-[sidebar-visible=false]:sm:translate-x-0"
     style="height: calc(100dvh - {rootCtx.navbarHeight + 36}px); top: {rootCtx.navbarHeight + 8}px;"
     data-sidebar-visible={sidebarVisibleEffective}
   >
