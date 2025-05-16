@@ -1,6 +1,6 @@
 import { Link, ProjectGroup, ProjectInfo, Tech } from "./types";
 import ModrinthIcon from "./components/ModrinthIcon.svelte";
-import { groupWithMetadata, type MetadataMapper } from "$lib/util";
+import { type MetadataMapper, withMetadata } from "$lib/util";
 
 const tech: Record<string, Tech> = {
   gradle: new Tech("Gradle", "iconify logos--gradle bg-gradle", "https://gradle.org"),
@@ -16,30 +16,29 @@ const allProjects = import.meta.glob("/src/projects/*/*.svx", {
   eager: true,
 });
 
-const getProjectInfo: MetadataMapper<ProjectInfo> = (metadata, component) => {
-  return new ProjectInfo(
-    metadata.name,
-    component,
-    metadata.githubOwner,
-    metadata.githubRepo,
-    (metadata.links ?? []).map(makeLink),
-    metadata.technologies.map((technology: string) => {
-      return tech[technology];
-    }),
-  );
-};
-
-const gradlePlugins = groupWithMetadata(allProjects, "gradle-plugins", getProjectInfo);
-const webApps = groupWithMetadata(allProjects, "web-apps", getProjectInfo);
-const libraries = groupWithMetadata(allProjects, "libraries", getProjectInfo);
-const minecraftMods = groupWithMetadata(allProjects, "minecraft-mods", getProjectInfo);
-
 export const projectGroups = [
-  new ProjectGroup("Web Apps", webApps, "ri--compass-line bg-primary"),
-  new ProjectGroup("Libraries", libraries, "ri--book-shelf-line bg-primary"),
-  new ProjectGroup("Gradle Plugins", gradlePlugins, "logos--gradle bg-gradle"),
-  new ProjectGroup("Minecraft Mods", minecraftMods, "ri--settings-5-fill bg-primary"),
+  projectGroup("web-apps", "Web Apps", "ri--compass-line bg-primary"),
+  projectGroup("libraries", "Libraries", "ri--book-shelf-line bg-primary"),
+  projectGroup("gradle-plugins", "Gradle Plugins", "logos--gradle bg-gradle"),
+  projectGroup("minecraft-mods", "Minecraft Mods", "ri--settings-5-fill bg-primary"),
 ];
+
+function projectGroup(path: string, name: string, iconClasses: string) {
+  const getProjectInfo: MetadataMapper<ProjectInfo> = (metadata, component) => {
+    return new ProjectInfo(
+      metadata.name,
+      component,
+      metadata.githubOwner,
+      metadata.githubRepo,
+      (metadata.links ?? []).map(makeLink),
+      metadata.technologies.map((technology: string) => {
+        return tech[technology];
+      }),
+    );
+  };
+  const projects = withMetadata(allProjects, getProjectInfo, { path });
+  return new ProjectGroup(name, projects, iconClasses);
+}
 
 function makeLink(link: { type: string; value: string }) {
   switch (link.type) {

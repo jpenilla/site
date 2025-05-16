@@ -5,16 +5,15 @@ export interface MetadataMapper<R> {
   (metadata: Record<string, any>, component: Component): R;
 }
 
-export function withMetadata<R>(imports: Record<string, unknown>, map: MetadataMapper<R>, order: string[] = []) {
-  return groupWithMetadata(imports, null, map, order);
-}
+const defaultWithMetadataOptions = { path: null, order: [] };
 
-export function groupWithMetadata<R>(
+export function withMetadata<R>(
   imports: Record<string, unknown>,
-  path: string | null,
   map: MetadataMapper<R>,
-  order: string[] = [],
+  options: { path?: string; order?: string[] } = {},
 ): R[] {
+  const { path, order } = { ...defaultWithMetadataOptions, ...options };
+
   const importsMap = new Map<string, unknown>();
   for (const filePath of Object.keys(imports)) {
     const search = path === null ? "/" : `/${path}/`;
