@@ -3,6 +3,7 @@ name: site
 githubOwner: jpenilla
 githubRepo: site
 technologies:
+  - typescript
   - svelteKit
   - tailwind
   - bun

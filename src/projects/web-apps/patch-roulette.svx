@@ -3,6 +3,7 @@ name: Patch Roulette
 githubOwner: PaperMC
 githubRepo: patch-roulette
 technologies:
+  - typescript
   - svelteKit
   - tailwind
   - bun

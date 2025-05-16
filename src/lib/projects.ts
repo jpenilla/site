@@ -5,6 +5,8 @@ import { type MetadataMapper, withMetadata } from "$lib/util";
 const tech: Record<string, Tech> = {
   gradle: new Tech("Gradle", "iconify logos--gradle bg-gradle", "https://gradle.org"),
   bun: new Tech("Bun", "iconify-color logos--bun", "https://bun.sh"),
+  vite: new Tech("Vite", "iconify-color logos--vitejs", "https://vitejs.dev"),
+  typescript: new Tech("TypeScript", "iconify-color logos--typescript-icon", "https://www.typescriptlang.org"),
   svelteKit: new Tech("SvelteKit", "iconify-color logos--svelte-icon", "https://svelte.dev"),
   tailwind: new Tech("Tailwind CSS", "iconify-color logos--tailwindcss-icon", "https://tailwindcss.com"),
   java: new Tech("Java", "iconify-color logos--java", "https://java.com"),
