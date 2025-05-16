@@ -43,6 +43,19 @@
     <li>
       <a
         class="flex w-fit items-center gap-1"
+        href="https://plugins.gradle.org/u/jpenilla"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span class="iconify size-6 bg-gradle logos--gradle"></span>
+        <span class="font-semibold text-gradle">Gradle Plugin Portal</span>
+        <span class="text-base-content/50">-</span>
+        <span class="link-parent-hover link">jpenilla</span>
+      </a>
+    </li>
+    <li>
+      <a
+        class="flex w-fit items-center gap-1"
         href="https://modrinth.com/user/jpenilla"
         target="_blank"
         rel="noopener noreferrer"
