@@ -20,12 +20,16 @@
   onClickOutside(
     () => viewportElement,
     (e) => {
+      // Don't close early when clicking the toggle button
       if (e.target instanceof HTMLElement && e.target.closest("[data-sidebar-toggle]")) {
         return;
       }
+
+      // The scrollbar is a sibling of the viewport
       if (scrollbarElement && scrollbarElement.contains(e.target as Node)) {
         return;
       }
+
       hideSidebar();
     },
   );
@@ -35,14 +39,21 @@
   }
 </script>
 
-<!-- TODO: menu tabbable while not visible -->
 <div
-  class="pointer-events-none fixed z-50 shrink-0 -translate-x-0 transition duration-150 ease-in-out data-[sidebar-visible=false]:-translate-x-[110%] sm:sticky data-[sidebar-visible=false]:sm:translate-x-0"
+  class="sidebar"
   style="height: calc(100dvh - {rootCtx.navbarHeight + 32}px); top: {rootCtx.navbarHeight + 8}px;"
   data-sidebar-visible={sidebarVisibleEffective}
 >
   <div class="flex size-full flex-col pt-10 transition duration-150 ease-in-out sm:pt-0">
-    <ScrollArea.Root class="pointer-events-auto grow overflow-hidden " type="auto">
+    <ScrollArea.Root
+      class="pointer-events-auto overflow-hidden"
+      type="auto"
+      onkeyup={(e) => {
+        if (e.key === "Escape") {
+          hideSidebar();
+        }
+      }}
+    >
       <ScrollArea.Viewport
         class="h-full max-h-max rounded-box border border-base-300 bg-base-200/80 backdrop-blur duration-150 ease-in-out sm:border-0 sm:bg-base-200 sm:backdrop-blur-none"
         bind:ref={viewportElement}
@@ -70,3 +81,36 @@
     </ScrollArea.Root>
   </div>
 </div>
+
+<style>
+  @reference "tailwindcss";
+
+  .sidebar {
+    pointer-events: none;
+    position: fixed;
+    z-index: 50;
+    flex-shrink: 0;
+    visibility: hidden;
+    transform: translateX(-110%);
+    transition:
+      transform 150ms ease-in-out,
+      visibility 0ms linear 150ms;
+  }
+
+  .sidebar[data-sidebar-visible="true"] {
+    visibility: visible;
+    transform: translateX(0);
+    transition:
+      transform 150ms ease-in-out,
+      visibility 0ms linear;
+  }
+
+  @media (min-width: theme("screens.sm")) {
+    .sidebar {
+      position: sticky;
+      visibility: visible;
+      transform: translateX(0);
+      transition: none;
+    }
+  }
+</style>
