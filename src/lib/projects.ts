@@ -60,6 +60,8 @@ function makeLink(link: { type: string; value: string }) {
       );
     case "demo":
       return new Link("Demo", link.value, "iconify ri--shapes-fill bg-primary");
+    case "homepage":
+      return new Link("Home", link.value, "iconify ri--home-4-fill bg-primary");
     default:
       throw new Error(`Unknown link type: ${link.type}`);
   }

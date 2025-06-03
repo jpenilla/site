@@ -12,6 +12,4 @@ technologies:
   - gradle
 ---
 
-Patch Roulette has two main components:
-- Web frontend and REST API for managing [Paper](https://papermc.io/software/paper) updates
-- Featureful and performant web-based multi-file diff viewer
+Web frontend and REST API for managing [Paper](https://papermc.io/software/paper) updates
