@@ -49,6 +49,6 @@
   },
   "dependencies": {
     "bits-ui": "^2.8.12",
-    "runed": "^0.31.1"
+    "runed": "^0.35.0"
   }
 }
