@@ -12,6 +12,7 @@ const tech: Record<string, Tech> = {
   java: new Tech("Java", "iconify-color logos--java", "https://java.com"),
   kotlin: new Tech("Kotlin", "iconify-color logos--kotlin-icon", "https://kotlinlang.org"),
   springBoot: new Tech("Spring Boot", "iconify-color logos--spring-icon", "https://spring.io/projects/spring-boot"),
+  graphQl: new Tech("GraphQL", "iconify-color logos--graphql", "https://graphql.org"),
 };
 
 const allProjects = import.meta.glob("/src/projects/*/*.svx", {

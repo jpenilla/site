@@ -1,0 +1,17 @@
+---
+name: fill-ui
+githubOwner: PaperMC
+githubRepo: fill-ui
+technologies:
+  - typescript
+  - svelteKit
+  - tailwind
+  - bun
+  - graphQl
+links:
+  - { type: "homepage", value: "https://fill-ui.papermc.io" }
+---
+
+Web frontend for PaperMC's [Fill](https://github.com/PaperMC/fill) API.
+Allows anyone to view and download metadata and builds of PaperMC projects with editing
+capabilities for authorized users.
