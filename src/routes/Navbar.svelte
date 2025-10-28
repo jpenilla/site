@@ -8,7 +8,7 @@
 
   let { coveringContent }: Props = $props();
 
-  const activePage = $derived(page.url.pathname);
+  const activePage = $derived(page.route.id);
 
   function isActivePage(path: string) {
     return activePage === path;
