@@ -42,11 +42,6 @@
     "typescript-eslint": "^8.46.2",
     "vite": "^7.1.12"
   },
-  "bunrc": {
-    "run": {
-      "bun": true
-    }
-  },
   "dependencies": {
     "bits-ui": "^2.14.1",
     "runed": "^0.36.0"
