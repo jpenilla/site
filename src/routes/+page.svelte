@@ -26,8 +26,19 @@
       <ASULogo aria-hidden="true" class="h-full w-fit max-w-full" />
     </h3>
     <div class="prose prose-sm flex flex-col">
+      <span class="font-semibold text-base-content">Ira A. Fulton Schools of Engineering</span>
+      <span>Master of Science in Software Engineering, Graduating May 2027</span>
+    </div>
+  </div>
+</div>
+<div class="card m-2 bg-base-200 card-sm">
+  <div class="card-body">
+    <h3 aria-label="Arizona State University" class="h-8 w-full">
+      <ASULogo aria-hidden="true" class="h-full w-fit max-w-full" />
+    </h3>
+    <div class="prose prose-sm flex flex-col">
       <span class="font-semibold text-base-content">W.P. Carey School of Business</span>
-      <span>Bachelor of Science in Computer Information Systems, Graduating Fall 2025</span>
+      <span>Bachelor of Science in Computer Information Systems, Graduated December 2025</span>
     </div>
   </div>
 </div>
