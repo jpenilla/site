@@ -1,9 +1,12 @@
 <script lang="ts">
+  import type { PageProps } from "./$types";
   import ProjectCard from "./ProjectCard.svelte";
   import { projectGroups } from "$lib/projects";
   import { rootContext } from "$lib/context.svelte";
   import Sidebar from "./Sidebar.svelte";
   import SidebarToggle from "./SidebarToggle.svelte";
+
+  let { data }: PageProps = $props();
 
   const rootCtx = rootContext.get();
   let scrollMarginStyle = $derived(`scroll-margin-top: calc(4rem + ${rootCtx.navbarHeight}px);`);
@@ -24,7 +27,11 @@
     </a>
     <div class="mb-6 grid w-full grid-cols-1 gap-2 lg:grid-cols-2 xl:grid-cols-3">
       {#each group.projects as project (project.name)}
-        <ProjectCard {project} style={scrollMarginStyle} />
+        <ProjectCard
+          {project}
+          githubStars={data.githubStars[`${project.githubOwner}/${project.githubRepo}`] ?? null}
+          style={scrollMarginStyle}
+        />
       {/each}
     </div>
   {/each}

@@ -1,50 +1,58 @@
+<script module lang="ts">
+  const compactNumberFormatter = new Intl.NumberFormat("en", { notation: "compact", maximumFractionDigits: 1 });
+  const exactNumberFormatter = new Intl.NumberFormat("en");
+</script>
+
 <script lang="ts">
   import { type RestProps, ProjectInfo } from "$lib/types";
+  import ProjectMetaLink from "./ProjectMetaLink.svelte";
 
   interface Props extends RestProps {
     project: ProjectInfo;
+    githubStars?: number | null;
   }
 
-  let { project, ...restProps }: Props = $props();
+  let { project, githubStars = null, ...restProps }: Props = $props();
 
-  const Description = project.description;
+  let Description = $derived(project.description);
 </script>
 
 <div id={project.id} class="card bg-base-200" {...restProps}>
-  <div class="card-body">
-    <div>
+  <div class="card-body gap-3">
+    <div class="flex flex-col gap-2.5">
       <a class="card-title link link-hover" href="#{project.id}">{project.name}</a>
-      <div class="flex flex-wrap gap-x-2 text-nowrap">
-        <a
-          href={project.githubUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="flex w-max link items-center link-hover"
-        >
-          <span class="me-1 iconify size-4 logos--github-icon"></span>
-          {project.githubOwner}<span class="mx-0.5 text-base-content/50">/</span>{project.githubRepo}
-        </a>
+      <div class="flex flex-wrap items-center gap-2">
+        <div class="join">
+          <ProjectMetaLink
+            href={project.githubUrl}
+            text={`${project.githubOwner}/${project.githubRepo}`}
+            iconClasses="iconify logos--github-icon"
+            joined
+          />
+          {#if githubStars !== null}
+            <ProjectMetaLink
+              href={`${project.githubUrl}/stargazers`}
+              text={compactNumberFormatter.format(githubStars)}
+              iconClasses="iconify ri--star-fill text-warning"
+              joined
+              ariaLabel={`${exactNumberFormatter.format(githubStars)} GitHub stars`}
+              title={`${exactNumberFormatter.format(githubStars)} GitHub stars`}
+            />
+          {/if}
+        </div>
         {#each project.links as link, index (index)}
-          <a
+          <ProjectMetaLink
             href={link.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex w-max link items-center gap-1 link-hover"
-          >
-            {#if link.iconComponent}
-              {@const IconComponent = link.iconComponent}
-              <IconComponent class="size-4 {link.iconClasses}" />
-            {:else}
-              <span class="iconify size-4 {link.iconClasses}"></span>
-            {/if}
-            {link.text}
-          </a>
+            text={link.text}
+            iconClasses={link.iconClasses}
+            iconComponent={link.iconComponent}
+          />
         {/each}
       </div>
     </div>
-    <Description class="my-4 prose prose-sm grow" />
+    <Description class="prose prose-sm grow" />
     {#if project.technologies.length > 0}
-      <ul class="menu menu-horizontal card-actions w-fit menu-sm rounded-sm bg-base-100 p-1">
+      <ul class="menu menu-horizontal w-fit menu-sm rounded-sm bg-base-100 p-1">
         {#each project.technologies as tech, index (index)}
           <li class="tooltip" data-tip={tech.name}>
             <a aria-label="{tech.name} Website" href={tech.url} target="_blank" rel="noopener noreferrer" class="p-1">

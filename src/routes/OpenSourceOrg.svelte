@@ -7,7 +7,7 @@
 
   let { org }: Props = $props();
 
-  const Description = org.description;
+  let Description = $derived(org.description);
 </script>
 
 <div class="card bg-base-200 card-sm">
