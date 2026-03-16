@@ -12,7 +12,7 @@ technologies:
   - gradle
 ---
 
-Web app and API for coordinating updates to [Paper](https://papermc.io/software/paper)'s large
+Web app and API for coordinating updates to [Paper](/projects#paper)'s large
 Minecraft patch stack.
 Tracks conflicted patches through assignment and completion states, brokering work between humans
 and agents while recording timing data.

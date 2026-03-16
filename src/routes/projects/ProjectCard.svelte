@@ -9,15 +9,28 @@
 
   interface Props extends RestProps {
     project: ProjectInfo;
+    focused?: boolean;
     githubStars?: number | null;
   }
 
-  let { project, githubStars = null, ...restProps }: Props = $props();
+  let { project, focused = false, githubStars = null, ...restProps }: Props = $props();
 
   let Description = $derived(project.description);
 </script>
 
-<div id={project.id} class="card bg-base-200" {...restProps}>
+<div
+  id={project.id}
+  class={["project-card card relative overflow-hidden bg-base-200"]}
+  data-focused={focused}
+  {...restProps}
+>
+  <div
+    aria-hidden="true"
+    class={[
+      "pointer-events-none absolute inset-0 rounded-[inherit] border-2 border-primary opacity-0 transition-opacity duration-200",
+      focused && "opacity-100",
+    ]}
+  ></div>
   <div class="card-body gap-3">
     <div class="flex flex-col gap-2.5">
       <a class="card-title link link-hover" href="#{project.id}">{project.name}</a>

@@ -7,9 +7,10 @@
 
   interface SidebarProps {
     sidebarVisible: boolean;
+    focusedId?: string | null;
   }
 
-  let { sidebarVisible = $bindable() }: SidebarProps = $props();
+  let { sidebarVisible = $bindable(), focusedId = null }: SidebarProps = $props();
 
   const rootCtx = rootContext.get();
 
@@ -61,10 +62,19 @@
         <ul class="menu menu-vertical w-max p-2">
           {#each projectGroups as group (group.id)}
             <li>
-              <a class="font-semibold" href="#{group.id}" onclick={hideSidebar}>{group.name}</a>
+              <a
+                class:menu-active={focusedId === group.id}
+                class="font-semibold"
+                href="#{group.id}"
+                onclick={hideSidebar}>{group.name}</a
+              >
               <ul>
                 {#each group.projects as project (project.name)}
-                  <li><a href="#{project.id}" onclick={hideSidebar}>{project.name}</a></li>
+                  <li>
+                    <a class:menu-active={focusedId === project.id} href="#{project.id}" onclick={hideSidebar}
+                      >{project.name}</a
+                    >
+                  </li>
                 {/each}
               </ul>
             </li>

@@ -10,4 +10,4 @@ links:
 
 Gradle plugin for generating structured resource files at build time.
 Supports custom resource factories, with built-in factories for plugin and mod metadata across
-platforms such as Paper, Velocity, Fabric, and NeoForge.
+platforms such as [Paper](/projects#paper), Velocity, Fabric, and NeoForge.
