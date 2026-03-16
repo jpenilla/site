@@ -13,6 +13,7 @@ const tech: Record<string, Tech> = {
   kotlin: new Tech("Kotlin", "iconify-color logos--kotlin-icon", "https://kotlinlang.org"),
   springBoot: new Tech("Spring Boot", "iconify-color logos--spring-icon", "https://spring.io/projects/spring-boot"),
   graphQl: new Tech("GraphQL", "iconify-color logos--graphql", "https://graphql.org"),
+  effect: new Tech("Effect", "iconify-color logos--effect-icon", "https://effect.website"),
 };
 
 const allProjects = import.meta.glob("/src/projects/*/*.svx", {
@@ -20,7 +21,7 @@ const allProjects = import.meta.glob("/src/projects/*/*.svx", {
 });
 
 export const projectGroups = [
-  projectGroup("web-apps", "Web Apps", "ri--compass-line bg-primary"),
+  projectGroup("web-apps", "Apps", "ri--compass-line bg-primary"),
   projectGroup("libraries", "Libraries", "ri--book-shelf-line bg-primary"),
   projectGroup("gradle-plugins", "Gradle Plugins", "logos--gradle bg-gradle"),
   projectGroup("minecraft-mods", "Minecraft Mods", "ri--settings-5-fill bg-primary"),

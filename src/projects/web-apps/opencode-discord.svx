@@ -1,0 +1,12 @@
+---
+name: opencode-discord
+githubOwner: jpenilla
+githubRepo: opencode-discord
+technologies:
+  - typescript
+  - effect
+  - bun
+---
+
+Brings [OpenCode](https://github.com/sst/opencode) into Discord, turning channels into persistent
+collaborative coding sessions with native chat workflows.

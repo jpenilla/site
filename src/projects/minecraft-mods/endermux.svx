@@ -1,0 +1,11 @@
+---
+name: Endermux
+githubOwner: jpenilla
+githubRepo: endermux
+technologies:
+  - java
+  - gradle
+---
+
+Unix socket remote console stack for Minecraft servers with a reusable server library, an
+interactive terminal client, remote completion, syntax highlighting, and log forwarding.
