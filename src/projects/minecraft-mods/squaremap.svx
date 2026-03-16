@@ -13,4 +13,4 @@ links:
   - { type: "demo", value: "https://squaremap-demo.jpenilla.com" }
 ---
 
-World map renderer and web viewer for Minecraft servers
+World map renderer and web viewer for Minecraft servers.

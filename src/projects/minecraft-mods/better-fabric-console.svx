@@ -10,4 +10,4 @@ links:
 ---
 
 Server-side Fabric mod enhancing the console with tab completions, colored log output, command syntax highlighting,
-command history, and more
+command history, and more.

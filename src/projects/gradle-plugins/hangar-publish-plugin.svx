@@ -9,4 +9,4 @@ links:
   - { type: "gpp", value: "io.papermc.hangar-publish-plugin" }
 ---
 
-Gradle plugin for automated publishing to [Hangar](https://hangar.papermc.io)
+Gradle plugin for automated publishing to [Hangar](https://hangar.papermc.io).

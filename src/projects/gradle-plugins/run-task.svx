@@ -9,4 +9,4 @@ links:
 ---
 
 Gradle plugin suite for launching Minecraft servers and proxies from Gradle for faster testing and
-iteration
+iteration.

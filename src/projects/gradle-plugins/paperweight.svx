@@ -8,4 +8,4 @@ links:
   - { type: "gpp-search", value: "io.papermc.paperweight" }
 ---
 
-Gradle plugin for building the Paper Minecraft server software, forks of Paper, and Paper plugins
+Gradle plugin for building the Paper Minecraft server software, forks of Paper, and Paper plugins.

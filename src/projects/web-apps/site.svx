@@ -9,5 +9,4 @@ technologies:
   - bun
 ---
 
-Personal portfolio website (this website)
-
+Personal portfolio website (this website).

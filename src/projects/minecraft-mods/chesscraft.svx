@@ -9,4 +9,4 @@ links:
   - { type: "modrinth", value: "chesscraft" }
 ---
 
-Adds in-world chess matches between players and or CPUs
+Adds in-world chess matches between players and/or CPUs.

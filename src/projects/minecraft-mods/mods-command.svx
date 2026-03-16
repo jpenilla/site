@@ -9,4 +9,4 @@ links:
   - { type: "modrinth", value: "mods-command" }
 ---
 
-Fabric mod adding commands to list, search, and get information about installed mods
+Fabric mod adding commands to list, search, and get information about installed mods.
