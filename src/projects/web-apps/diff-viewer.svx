@@ -12,4 +12,6 @@ links:
   - { type: "demo", value: "https://diffs.dev/?github_url=https%3A%2F%2Fgithub.com%2FPaperMC%2FPaper%2Fpull%2F8235" }
 ---
 
-Featureful and performant web-based multi-file diff viewer
+High-performance multi-file diff viewer for the web.
+Works with local files, GitHub pull requests, commits, and comparisons.
+Includes a browser extension for opening diffs directly in diffs.dev.

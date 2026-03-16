@@ -8,4 +8,5 @@ links:
   - { type: "gpp-search", value: "xyz.jpenilla.run-" }
 ---
 
-Gradle plugins adding tasks to run Minecraft server and proxy software
+Gradle plugin suite for launching Minecraft servers and proxies from Gradle for faster testing and
+iteration

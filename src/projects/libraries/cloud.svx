@@ -8,4 +8,5 @@ technologies:
   - gradle
 ---
 
-Command framework & dispatcher for the JVM
+General-purpose command framework for the JVM with strongly typed parsing and dispatch.
+Includes integrations for Minecraft, Discord, JLine, and other platforms.

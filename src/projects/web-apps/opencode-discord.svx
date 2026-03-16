@@ -8,5 +8,6 @@ technologies:
   - bun
 ---
 
-Brings [OpenCode](https://github.com/sst/opencode) into Discord, turning channels into persistent
-collaborative coding sessions with native chat workflows.
+Discord app for collaborative coding with an AI agent, built around native Discord workflows.
+Powered by [OpenCode](https://github.com/sst/opencode), with sandboxed execution and support for
+multiple LLM providers.

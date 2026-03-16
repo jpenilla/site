@@ -12,4 +12,7 @@ technologies:
   - gradle
 ---
 
-Web frontend and REST API for managing [Paper](https://papermc.io/software/paper) updates
+Web app and API for coordinating updates to [Paper](https://papermc.io/software/paper)'s large
+Minecraft patch stack.
+Tracks conflicted patches through assignment and completion states, brokering work between humans
+and agents while recording timing data.

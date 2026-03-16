@@ -12,6 +12,6 @@ links:
   - { type: "homepage", value: "https://fill-ui.papermc.io" }
 ---
 
-Web frontend for PaperMC's [Fill](https://github.com/PaperMC/fill) API.
-Allows anyone to view and download metadata and builds of PaperMC projects with editing
-capabilities for authorized users.
+Web app for PaperMC project builds and release metadata.
+Lets users browse and download artifacts while authorized users manage project data.
+Built on top of PaperMC's [Fill](https://github.com/PaperMC/fill) API.

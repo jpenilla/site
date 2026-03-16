@@ -9,4 +9,7 @@ links:
   - { type: "gpp", value: "xyz.jpenilla.gremlin-gradle" }
 ---
 
-Gradle plugin and Java library for resolving Gradle Configurations at runtime
+Gradle plugin and Java library for flattening dependency graphs into reproducible runtime
+dependency sets.
+Includes isolated runtime resolution and jar-processing hooks for transforming and bootstrapping
+downloaded artifacts.

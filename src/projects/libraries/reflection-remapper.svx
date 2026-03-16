@@ -7,4 +7,5 @@ technologies:
   - gradle
 ---
 
-Java reflection library with support for obfuscation mappings
+Java library for simplifying reflective calls with reusable reflection utilities and proxies.
+Includes remapping support so the same code can work cleanly in remapped environments.
