@@ -1,0 +1,14 @@
+---
+name: Paper
+githubOwner: PaperMC
+githubRepo: Paper
+technologies:
+  - java
+  - gradle
+links:
+  - { type: "homepage", value: "https://papermc.io/software/paper" }
+---
+
+High-performance Minecraft server software focused on fixing gameplay and mechanics inconsistencies.
+Major contributor and maintainer, with a large role in version update work, ongoing core
+maintenance, and project direction.
