@@ -9,4 +9,4 @@ links:
   - { type: "modrinth", value: "chesscraft" }
 ---
 
-Adds in-world chess matches between players and/or CPUs.
+Adds playable in-world chess matches against other players or chess engines.

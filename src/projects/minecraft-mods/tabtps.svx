@@ -9,4 +9,4 @@ links:
   - { type: "modrinth", value: "tabtps" }
 ---
 
-Utility to monitor real-time server performance in-game.
+Minecraft mod/plugin for monitoring real-time server performance in-game.
