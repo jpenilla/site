@@ -1,0 +1,15 @@
+---
+name: Moonrise
+githubOwner: Tuinity
+githubRepo: Moonrise
+technologies:
+  - java
+  - gradle
+links:
+  - { type: "modrinth", value: "moonrise-opt" }
+---
+
+Performance optimization mod for Minecraft's integrated and dedicated server on Fabric, NeoForge,
+and Paper.
+Major contributor and maintainer, focused primarily on mod compatibility, version update work, and
+build tooling.
