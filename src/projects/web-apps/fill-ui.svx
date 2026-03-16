@@ -6,8 +6,9 @@ technologies:
   - typescript
   - svelteKit
   - tailwind
-  - bun
   - graphQl
+  - bun
+  - cloudflare
 links:
   - { type: "homepage", value: "https://fill-ui.papermc.io" }
 ---

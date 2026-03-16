@@ -7,6 +7,7 @@ technologies:
   - svelteKit
   - tailwind
   - bun
+  - cloudflare
 links:
   - { type: "homepage", value: "https://diffs.dev" }
   - { type: "demo", value: "https://diffs.dev/?github_url=https%3A%2F%2Fgithub.com%2FPaperMC%2FPaper%2Fpull%2F8235" }

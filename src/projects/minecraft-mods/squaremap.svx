@@ -4,10 +4,10 @@ githubOwner: jpenilla
 githubRepo: squaremap
 technologies:
   - java
-  - gradle
   - typescript
   - vite
   - bun
+  - gradle
 links:
   - { type: "modrinth", value: "squaremap" }
   - { type: "demo", value: "https://squaremap-demo.jpenilla.com" }

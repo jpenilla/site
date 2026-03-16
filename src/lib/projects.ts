@@ -14,6 +14,7 @@ const tech: Record<string, Tech> = {
   springBoot: new Tech("Spring Boot", "iconify-color logos--spring-icon", "https://spring.io/projects/spring-boot"),
   graphQl: new Tech("GraphQL", "iconify-color logos--graphql", "https://graphql.org"),
   effect: new Tech("Effect", "iconify-color logos--effect-icon", "https://effect.website"),
+  cloudflare: new Tech("Cloudflare", "iconify-color logos--cloudflare-icon", "https://www.cloudflare.com"),
 };
 
 const allProjects = import.meta.glob("/src/projects/*/*.svx", {

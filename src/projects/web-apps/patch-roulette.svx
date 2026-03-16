@@ -6,9 +6,9 @@ technologies:
   - typescript
   - svelteKit
   - tailwind
-  - bun
   - java
   - springBoot
+  - bun
   - gradle
 ---
 
