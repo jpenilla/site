@@ -25,6 +25,9 @@ const config = {
   extensions: [".svelte", ".svx"],
   preprocess: [vitePreprocess(), mdsvex(mdsvexConfig)],
   kit: {
+    experimental: {
+      remoteFunctions: true,
+    },
     adapter: adapter({
       config: undefined,
       platformProxy: {

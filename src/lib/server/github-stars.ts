@@ -1,7 +1,6 @@
 import { dev } from "$app/environment";
 import { env } from "$env/dynamic/private";
 import { projectGroups } from "$lib/projects";
-import type { PageServerLoad } from "./$types";
 
 interface GitHubUser {
   repos_url: string;
@@ -19,6 +18,8 @@ interface CloudflareFetchInit extends RequestInit {
     cacheTtlByStatus?: Record<string, number>;
   };
 }
+
+export type GitHubStars = Record<string, number | null>;
 
 const GITHUB_API_HEADERS = {
   accept: "application/vnd.github+json",
@@ -38,8 +39,8 @@ class GitHubRateLimitError extends Error {
   }
 }
 
-export const load: PageServerLoad = async ({ fetch }) => {
-  const githubStars: Record<string, number | null> = {};
+export async function fetchProjectGitHubStars(fetchFn: typeof fetch): Promise<GitHubStars> {
+  const githubStars: GitHubStars = {};
   const reposByOwner = new Map<string, Set<string>>();
 
   for (const group of projectGroups) {
@@ -67,9 +68,9 @@ export const load: PageServerLoad = async ({ fetch }) => {
       const ownerStars = createOwnerStarsRecord(repoNames);
 
       try {
-        const ownerInfo = await fetchGitHubJson<GitHubUser>(fetch, `https://api.github.com/users/${owner}`);
+        const ownerInfo = await fetchGitHubJson<GitHubUser>(fetchFn, `https://api.github.com/users/${owner}`);
         const repos = await fetchGitHubPages<GitHubRepo>(
-          fetch,
+          fetchFn,
           withSearchParams(ownerInfo.repos_url, { per_page: "100", type: "owner" }),
         );
 
@@ -94,8 +95,8 @@ export const load: PageServerLoad = async ({ fetch }) => {
     }),
   );
 
-  return { githubStars };
-};
+  return githubStars;
+}
 
 async function fetchGitHubJson<T>(fetchFn: typeof fetch, url: string): Promise<T> {
   const response = await fetchFn(url, gitHubFetchInit());
@@ -179,11 +180,7 @@ function createOwnerStarsRecord(
   return starsByRepo;
 }
 
-function assignOwnerStars(
-  githubStars: Record<string, number | null>,
-  owner: string,
-  starsByRepo: Record<string, number | null>,
-): void {
+function assignOwnerStars(githubStars: GitHubStars, owner: string, starsByRepo: Record<string, number | null>): void {
   for (const [repoName, stars] of Object.entries(starsByRepo)) {
     githubStars[`${owner}/${repoName}`] = stars;
   }

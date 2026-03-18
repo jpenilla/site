@@ -1,19 +1,18 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import type { PageProps } from "./$types";
   import ProjectCard from "./ProjectCard.svelte";
   import { projectGroups } from "$lib/projects";
   import { rootContext } from "$lib/context.svelte";
   import Sidebar from "./Sidebar.svelte";
   import SidebarToggle from "./SidebarToggle.svelte";
-
-  let { data }: PageProps = $props();
+  import { getProjectGitHubStars } from "./stars.remote";
 
   const rootCtx = rootContext.get();
   let scrollMarginStyle = $derived(`scroll-margin-top: calc(4rem + ${rootCtx.navbarHeight}px);`);
 
   let sidebarVisible = $state(false);
   let focusedId = $state<string | null>(null);
+  const githubStars = getProjectGitHubStars();
 
   onMount(() => {
     const updateFocusedId = () => {
@@ -55,10 +54,12 @@
     </div>
     <div class="mb-6 grid w-full grid-cols-1 gap-2 lg:grid-cols-2 xl:grid-cols-3">
       {#each group.projects as project (project.name)}
+        {@const fullName = `${project.githubOwner}/${project.githubRepo}`}
         <ProjectCard
           {project}
           focused={focusedId === project.id}
-          githubStars={data.githubStars[`${project.githubOwner}/${project.githubRepo}`] ?? null}
+          githubStars={githubStars.current?.[fullName] ?? null}
+          githubStarsPending={githubStars.loading && !githubStars.ready}
           style={scrollMarginStyle}
         />
       {/each}

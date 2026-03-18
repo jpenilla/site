@@ -11,9 +11,10 @@
     project: ProjectInfo;
     focused?: boolean;
     githubStars?: number | null;
+    githubStarsPending?: boolean;
   }
 
-  let { project, focused = false, githubStars = null, ...restProps }: Props = $props();
+  let { project, focused = false, githubStars = null, githubStarsPending = false, ...restProps }: Props = $props();
 
   let Description = $derived(project.description);
 </script>
@@ -42,7 +43,15 @@
             iconClasses="iconify logos--github-icon"
             joined
           />
-          {#if githubStars !== null}
+          {#if githubStarsPending}
+            <div
+              aria-hidden="true"
+              class="join-item flex h-8 min-h-8 items-center gap-2 border border-base-content/10 bg-base-100 px-2"
+            >
+              <span class="iconify ri--star-fill size-4 text-warning"></span>
+              <span class="skeleton h-3 w-10 rounded-full"></span>
+            </div>
+          {:else if githubStars !== null}
             <ProjectMetaLink
               href={`${project.githubUrl}/stargazers`}
               text={compactNumberFormatter.format(githubStars)}
