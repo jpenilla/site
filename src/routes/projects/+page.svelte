@@ -1,4 +1,5 @@
 <script lang="ts">
+  import type { PageData } from "./$types";
   import { onMount } from "svelte";
   import ProjectCard from "./ProjectCard.svelte";
   import { projectGroups } from "$lib/projects";
@@ -6,6 +7,8 @@
   import Sidebar from "./Sidebar.svelte";
   import SidebarToggle from "./SidebarToggle.svelte";
   import { getProjectGitHubStars } from "./stars.remote";
+
+  let { data }: { data: PageData } = $props();
 
   const rootCtx = rootContext.get();
   let scrollMarginStyle = $derived(`scroll-margin-top: calc(4rem + ${rootCtx.navbarHeight}px);`);
@@ -58,8 +61,8 @@
         <ProjectCard
           {project}
           focused={focusedId === project.id}
-          githubStars={githubStars.current?.[fullName] ?? null}
-          githubStarsPending={!githubStars.ready}
+          githubStars={githubStars.current?.[fullName] ?? data.cachedGitHubStars?.[fullName] ?? null}
+          githubStarsPending={!githubStars.ready && data.cachedGitHubStars === null}
           style={scrollMarginStyle}
         />
       {/each}

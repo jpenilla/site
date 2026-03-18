@@ -1,6 +1,7 @@
 import { dev } from "$app/environment";
 import { env } from "$env/dynamic/private";
 import { projectGroups } from "$lib/projects";
+import type { CacheStorage, Response as CloudflareResponse } from "@cloudflare/workers-types";
 
 interface GitHubUser {
   repos_url: string;
@@ -26,12 +27,8 @@ const GITHUB_API_HEADERS = {
   "user-agent": "jpenilla-site",
 };
 
-const DEV_GITHUB_STARS_CACHE_TTL_MS = 1000 * 60 * 15;
-
-interface DevGitHubStarsCacheEntry {
-  expiresAt: number;
-  starsByRepo: Record<string, number | null>;
-}
+const GITHUB_STARS_CACHE_TTL_MS = 1000 * 60 * 15;
+const GITHUB_STARS_CACHE_KEY = "https://cache.jpenilla.dev/github-stars/projects";
 
 class GitHubRateLimitError extends Error {
   constructor(url: string, status: number, statusText: string) {
@@ -39,7 +36,15 @@ class GitHubRateLimitError extends Error {
   }
 }
 
-export async function fetchProjectGitHubStars(fetchFn: typeof fetch): Promise<GitHubStars> {
+export async function fetchProjectGitHubStars(
+  fetchFn: typeof fetch,
+  cacheStorage?: CacheStorage,
+): Promise<GitHubStars> {
+  const cachedStars = await readCachedProjectGitHubStars(cacheStorage);
+  if (cachedStars) {
+    return cachedStars;
+  }
+
   const githubStars: GitHubStars = {};
   const reposByOwner = new Map<string, Set<string>>();
 
@@ -59,12 +64,6 @@ export async function fetchProjectGitHubStars(fetchFn: typeof fetch): Promise<Gi
 
   await Promise.all(
     [...reposByOwner.entries()].map(async ([owner, repoNames]) => {
-      const cachedStars = readDevGitHubStarsCache(owner, repoNames);
-      if (cachedStars) {
-        assignOwnerStars(githubStars, owner, cachedStars);
-        return;
-      }
-
       const ownerStars = createOwnerStarsRecord(repoNames);
 
       try {
@@ -81,12 +80,10 @@ export async function fetchProjectGitHubStars(fetchFn: typeof fetch): Promise<Gi
         }
 
         assignOwnerStars(githubStars, owner, ownerStars);
-        writeDevGitHubStarsCache(owner, ownerStars);
       } catch (error) {
         if (error instanceof GitHubRateLimitError && dev) {
           const fallbackStars = createOwnerStarsRecord(repoNames, 42);
           assignOwnerStars(githubStars, owner, fallbackStars);
-          writeDevGitHubStarsCache(owner, fallbackStars);
           return;
         }
 
@@ -95,7 +92,22 @@ export async function fetchProjectGitHubStars(fetchFn: typeof fetch): Promise<Gi
     }),
   );
 
+  await writeGitHubStarsCache(cacheStorage, githubStars);
   return githubStars;
+}
+
+export async function readCachedProjectGitHubStars(cacheStorage?: CacheStorage): Promise<GitHubStars | null> {
+  const cache = cacheStorage?.default;
+  if (!cache) {
+    return null;
+  }
+
+  const response = await cache.match(GITHUB_STARS_CACHE_KEY);
+  if (!response) {
+    return null;
+  }
+
+  return (await response.json()) as GitHubStars;
 }
 
 async function fetchGitHubJson<T>(fetchFn: typeof fetch, url: string): Promise<T> {
@@ -186,46 +198,21 @@ function assignOwnerStars(githubStars: GitHubStars, owner: string, starsByRepo: 
   }
 }
 
-function readDevGitHubStarsCache(owner: string, repoNames: Set<string>): Record<string, number | null> | null {
-  const cache = getDevGitHubStarsCache();
-  const entry = cache?.get(owner);
-  if (!entry || entry.expiresAt <= Date.now()) {
-    cache?.delete(owner);
-    return null;
-  }
-
-  for (const repoName of repoNames) {
-    if (!(repoName in entry.starsByRepo)) {
-      return null;
-    }
-  }
-
-  return entry.starsByRepo;
-}
-
-function writeDevGitHubStarsCache(owner: string, starsByRepo: Record<string, number | null>): void {
-  const cache = getDevGitHubStarsCache();
+async function writeGitHubStarsCache(cacheStorage: CacheStorage | undefined, githubStars: GitHubStars): Promise<void> {
+  const cache = cacheStorage?.default;
   if (!cache) {
     return;
   }
 
-  cache.set(owner, {
-    expiresAt: Date.now() + DEV_GITHUB_STARS_CACHE_TTL_MS,
-    starsByRepo,
-  });
-}
-
-function getDevGitHubStarsCache(): Map<string, DevGitHubStarsCacheEntry> | null {
-  if (!dev) {
-    return null;
-  }
-
-  const globalScope = globalThis as typeof globalThis & {
-    __devGitHubStarsCache?: Map<string, DevGitHubStarsCacheEntry>;
-  };
-
-  globalScope.__devGitHubStarsCache ??= new Map<string, DevGitHubStarsCacheEntry>();
-  return globalScope.__devGitHubStarsCache;
+  await cache.put(
+    GITHUB_STARS_CACHE_KEY,
+    new Response(JSON.stringify(githubStars), {
+      headers: {
+        "cache-control": `max-age=${Math.floor(GITHUB_STARS_CACHE_TTL_MS / 1000)}`,
+        "content-type": "application/json",
+      },
+    }) as unknown as CloudflareResponse,
+  );
 }
 
 function nextLink(linkHeader: string | null): string | null {
