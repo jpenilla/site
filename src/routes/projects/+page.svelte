@@ -15,7 +15,7 @@
 
   let sidebarVisible = $state(false);
   let focusedId = $state<string | null>(null);
-  const githubStars = getProjectGitHubStars();
+  const githubStars = $derived.by(() => (data.cachedGitHubStars === null ? getProjectGitHubStars() : null));
 
   onMount(() => {
     const updateFocusedId = () => {
@@ -61,8 +61,8 @@
         <ProjectCard
           {project}
           focused={focusedId === project.id}
-          githubStars={githubStars.current?.[fullName] ?? data.cachedGitHubStars?.[fullName] ?? null}
-          githubStarsPending={!githubStars.ready && data.cachedGitHubStars === null}
+          githubStars={githubStars?.current?.[fullName] ?? data.cachedGitHubStars?.[fullName] ?? null}
+          githubStarsPending={githubStars !== null && !githubStars.ready}
           style={scrollMarginStyle}
         />
       {/each}
