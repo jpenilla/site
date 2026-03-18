@@ -28,7 +28,7 @@ const GITHUB_API_HEADERS = {
 };
 
 const GITHUB_STARS_CACHE_TTL_MS = 1000 * 60 * 15;
-const GITHUB_STARS_CACHE_KEY = "https://cache.jpenilla.dev/github-stars/projects";
+const GITHUB_STARS_CACHE_PATH = "/__cache/github-stars/projects";
 
 class GitHubRateLimitError extends Error {
   constructor(url: string, status: number, statusText: string) {
@@ -38,9 +38,10 @@ class GitHubRateLimitError extends Error {
 
 export async function fetchProjectGitHubStars(
   fetchFn: typeof fetch,
+  requestOrigin: string,
   cacheStorage?: CacheStorage,
 ): Promise<GitHubStars> {
-  const cachedStars = await readCachedProjectGitHubStars(cacheStorage);
+  const cachedStars = await readCachedProjectGitHubStars(requestOrigin, cacheStorage);
   if (cachedStars) {
     return cachedStars;
   }
@@ -92,17 +93,20 @@ export async function fetchProjectGitHubStars(
     }),
   );
 
-  await writeGitHubStarsCache(cacheStorage, githubStars);
+  await writeGitHubStarsCache(requestOrigin, cacheStorage, githubStars);
   return githubStars;
 }
 
-export async function readCachedProjectGitHubStars(cacheStorage?: CacheStorage): Promise<GitHubStars | null> {
+export async function readCachedProjectGitHubStars(
+  requestOrigin: string,
+  cacheStorage?: CacheStorage,
+): Promise<GitHubStars | null> {
   const cache = cacheStorage?.default;
   if (!cache) {
     return null;
   }
 
-  const response = await cache.match(GITHUB_STARS_CACHE_KEY);
+  const response = await cache.match(gitHubStarsCacheKey(requestOrigin));
   if (!response) {
     return null;
   }
@@ -198,14 +202,18 @@ function assignOwnerStars(githubStars: GitHubStars, owner: string, starsByRepo: 
   }
 }
 
-async function writeGitHubStarsCache(cacheStorage: CacheStorage | undefined, githubStars: GitHubStars): Promise<void> {
+async function writeGitHubStarsCache(
+  requestOrigin: string,
+  cacheStorage: CacheStorage | undefined,
+  githubStars: GitHubStars,
+): Promise<void> {
   const cache = cacheStorage?.default;
   if (!cache) {
     return;
   }
 
   await cache.put(
-    GITHUB_STARS_CACHE_KEY,
+    gitHubStarsCacheKey(requestOrigin),
     new Response(JSON.stringify(githubStars), {
       headers: {
         "cache-control": `max-age=${Math.floor(GITHUB_STARS_CACHE_TTL_MS / 1000)}`,
@@ -213,6 +221,10 @@ async function writeGitHubStarsCache(cacheStorage: CacheStorage | undefined, git
       },
     }) as unknown as CloudflareResponse,
   );
+}
+
+function gitHubStarsCacheKey(requestOrigin: string): string {
+  return new URL(GITHUB_STARS_CACHE_PATH, requestOrigin).toString();
 }
 
 function nextLink(linkHeader: string | null): string | null {
