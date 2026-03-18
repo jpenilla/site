@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "jpenilla-com",
+  "name": "jpenilla-site",
   "main": ".svelte-kit/cloudflare/_worker.js",
   "compatibility_date": "2026-03-18",
   "workers_dev": true,
