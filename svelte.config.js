@@ -29,17 +29,13 @@ const config = {
       remoteFunctions: true,
     },
     adapter: adapter({
-      config: undefined,
+      config: "wrangler.jsonc",
       platformProxy: {
-        configPath: undefined,
+        configPath: "wrangler.jsonc",
         environment: undefined,
         persist: undefined,
       },
       fallback: "plaintext",
-      routes: {
-        include: ["/*"],
-        exclude: ["<all>"],
-      },
     }),
   },
 };

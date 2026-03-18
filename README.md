@@ -33,4 +33,4 @@ bun run format
 
 ## Deploy
 
-Commits to `master` are automatically deployed by Cloudflare Pages
+Commits to `master` are automatically deployed by Cloudflare Workers Builds
