@@ -49,7 +49,7 @@
               class="join-item flex h-8 min-h-8 items-center gap-2 border border-base-content/10 bg-base-100 px-2"
             >
               <span class="iconify size-4 text-warning ri--star-fill"></span>
-              <span class="h-3 w-10 skeleton rounded-full"></span>
+              <span class="h-3 w-4 skeleton rounded-full"></span>
             </div>
           {:else if githubStars !== null}
             <ProjectMetaLink

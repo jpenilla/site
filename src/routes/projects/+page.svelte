@@ -59,7 +59,7 @@
           {project}
           focused={focusedId === project.id}
           githubStars={githubStars.current?.[fullName] ?? null}
-          githubStarsPending={githubStars.loading && !githubStars.ready}
+          githubStarsPending={!githubStars.ready}
           style={scrollMarginStyle}
         />
       {/each}
