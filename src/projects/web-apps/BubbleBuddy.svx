@@ -1,13 +1,13 @@
 ---
-name: opencode-discord
+name: BubbleBuddy
 githubOwner: jpenilla
-githubRepo: opencode-discord
+githubRepo: BubbleBuddy
 technologies:
   - typescript
   - effect
-  - bun
+  - pnpm
 ---
 
 Discord app for collaborative coding with an AI agent, built around native Discord workflows.
-Powered by [OpenCode](https://github.com/sst/opencode), with sandboxed execution and support for
+Powered by [Pi](https://github.com/earendil-works/pi), with channel-scoped sessions and support for
 multiple LLM providers.
