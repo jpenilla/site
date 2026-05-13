@@ -6,7 +6,7 @@ technologies:
   - typescript
   - svelteKit
   - tailwind
-  - bun
+  - pnpm
   - cloudflare
 links:
   - { type: "homepage", value: "https://diffs.dev" }
