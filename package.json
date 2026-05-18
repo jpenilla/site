@@ -34,7 +34,7 @@
     "mdsvex": "^0.12.7",
     "prettier": "^3.8.1",
     "prettier-plugin-svelte": "^3.5.1",
-    "prettier-plugin-tailwindcss": "^0.7.1",
+    "prettier-plugin-tailwindcss": "^0.8.0",
     "rehype-external-links": "^3.0.0",
     "svelte": "^5.53.11",
     "svelte-check": "^4.4.5",
