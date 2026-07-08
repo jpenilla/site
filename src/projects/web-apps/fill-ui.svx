@@ -6,6 +6,7 @@ technologies:
   - typescript
   - svelteKit
   - tailwind
+  - vite
   - graphQl
   - bun
   - cloudflare

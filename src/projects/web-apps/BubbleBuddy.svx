@@ -4,6 +4,7 @@ githubOwner: jpenilla
 githubRepo: BubbleBuddy
 technologies:
   - typescript
+  - node
   - effect
   - pnpm
 ---

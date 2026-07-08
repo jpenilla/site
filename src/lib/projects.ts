@@ -7,6 +7,7 @@ const tech: Record<string, Tech> = {
   bun: new Tech("Bun", "iconify-color logos--bun", "https://bun.sh"),
   pnpm: new Tech("pnpm", "iconify-color logos--pnpm", "https://pnpm.io"),
   vite: new Tech("Vite", "iconify-color logos--vitejs", "https://vitejs.dev"),
+  node: new Tech("Node.js", "iconify-color logos--nodejs-icon", "https://nodejs.org"),
   typescript: new Tech("TypeScript", "iconify-color logos--typescript-icon", "https://www.typescriptlang.org"),
   svelteKit: new Tech("SvelteKit", "iconify-color logos--svelte-icon", "https://svelte.dev"),
   tailwind: new Tech("Tailwind CSS", "iconify-color logos--tailwindcss-icon", "https://tailwindcss.com"),
