@@ -7,13 +7,16 @@ technologies:
   - svelteKit
   - tailwind
   - vite
-  - java
-  - springBoot
+  - hono
+  - drizzle
+  - sqlite
   - bun
-  - gradle
+  - cloudflare
 ---
 
 Web app and API for coordinating updates to [Paper](/projects#paper)'s large
 Minecraft patch stack.
 Tracks conflicted patches through assignment and completion states, brokering work between humans
 and agents while recording timing data.
+The Cloudflare Worker serves the UI and API. A Durable Object owns the SQLite database and
+serializes patch claims.
