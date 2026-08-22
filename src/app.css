@@ -16,6 +16,10 @@
   --color-discord: #5865f2;
   --color-modrinth: #00af5c;
   --color-gradle: #209bc4;
-  --color-drizzle: #c5f74f;
+  --color-drizzle: #4d7c0f;
   --color-sqlite: #0f80cc;
+}
+
+[data-theme="dark"] {
+  --color-drizzle: #c5f74f;
 }
