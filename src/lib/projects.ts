@@ -17,7 +17,7 @@ const tech: Record<string, Tech> = {
   graphQl: new Tech("GraphQL", "iconify-color logos--graphql", "https://graphql.org"),
   effect: new Tech("Effect", "iconify-color logos--effect-icon", "https://effect.website"),
   hono: new Tech("Hono", "iconify-color logos--hono", "https://hono.dev"),
-  drizzle: new Tech("Drizzle", "iconify simple-icons--drizzle bg-drizzle", "https://orm.drizzle.team"),
+  drizzle: new Tech("Drizzle ORM", "iconify simple-icons--drizzle bg-drizzle", "https://orm.drizzle.team"),
   sqlite: new Tech("SQLite", "iconify simple-icons--sqlite bg-sqlite", "https://sqlite.org"),
   cloudflare: new Tech("Cloudflare", "iconify-color logos--cloudflare-icon", "https://www.cloudflare.com"),
 };
