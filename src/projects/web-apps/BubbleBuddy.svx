@@ -6,6 +6,7 @@ technologies:
   - typescript
   - node
   - effect
+  - sqlite
   - pnpm
 ---
 

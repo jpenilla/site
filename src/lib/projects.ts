@@ -20,6 +20,11 @@ const tech: Record<string, Tech> = {
   drizzle: new Tech("Drizzle", "iconify-color logos--drizzle-icon", "https://orm.drizzle.team"),
   sqlite: new Tech("SQLite", "iconify-color logos--sqlite", "https://sqlite.org"),
   cloudflare: new Tech("Cloudflare", "iconify-color logos--cloudflare-icon", "https://www.cloudflare.com"),
+  cloudflareWorkers: new Tech(
+    "Cloudflare Workers",
+    "iconify-color logos--cloudflare-workers-icon",
+    "https://developers.cloudflare.com/workers/",
+  ),
 };
 
 const allProjects = import.meta.glob("/src/projects/*/*.svx", {
