@@ -8,8 +8,8 @@ technologies:
   - tailwind
   - vite
   - hono
-  - drizzle
   - sqlite
+  - drizzle
   - bun
   - cloudflare
 ---
