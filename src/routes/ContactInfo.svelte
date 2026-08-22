@@ -1,6 +1,4 @@
 <script lang="ts">
-  import ModrinthIcon from "$lib/components/ModrinthIcon.svelte";
-
   let { ...restProps } = $props();
 </script>
 
@@ -60,7 +58,7 @@
         target="_blank"
         rel="noopener noreferrer"
       >
-        <ModrinthIcon class="size-6 text-modrinth" />
+        <span class="iconify size-6 bg-modrinth simple-icons--modrinth"></span>
         <span class="font-semibold text-modrinth">Modrinth</span>
         <span class="text-base-content/50">-</span>
         <span class="link-parent-hover link">jpenilla</span>

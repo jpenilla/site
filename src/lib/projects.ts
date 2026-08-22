@@ -1,5 +1,4 @@
 import { Link, ProjectGroup, ProjectInfo, Tech } from "./types";
-import ModrinthIcon from "./components/ModrinthIcon.svelte";
 import { type MetadataMapper, withMetadata } from "$lib/util";
 
 const tech: Record<string, Tech> = {
@@ -53,7 +52,11 @@ function projectGroup(path: string, name: string, iconClasses: string) {
 function makeLink(link: { type: string; value: string }) {
   switch (link.type) {
     case "modrinth":
-      return new Link("Modrinth", `https://modrinth.com/mod/${link.value}`, "text-modrinth", ModrinthIcon);
+      return new Link(
+        "Modrinth",
+        `https://modrinth.com/mod/${link.value}`,
+        "iconify simple-icons--modrinth bg-modrinth",
+      );
     case "gpp":
       return new Link(
         "Gradle Plugin Portal",
