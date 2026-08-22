@@ -1,5 +1,5 @@
 import { Link, ProjectGroup, ProjectInfo, Tech } from "./types";
-import ModrinthIcon from "./components/ModrinthIcon.svelte";
+import DurableObjectsIcon from "./components/DurableObjectsIcon.svelte";
 import { type MetadataMapper, withMetadata } from "$lib/util";
 
 const tech: Record<string, Tech> = {
@@ -19,7 +19,17 @@ const tech: Record<string, Tech> = {
   hono: new Tech("Hono", "iconify-color logos--hono", "https://hono.dev"),
   drizzle: new Tech("Drizzle ORM", "iconify simple-icons--drizzle bg-drizzle", "https://orm.drizzle.team"),
   sqlite: new Tech("SQLite", "iconify simple-icons--sqlite bg-sqlite", "https://sqlite.org"),
-  cloudflare: new Tech("Cloudflare", "iconify-color logos--cloudflare-icon", "https://www.cloudflare.com"),
+  cloudflareWorkers: new Tech(
+    "Cloudflare Workers",
+    "iconify-color logos--cloudflare-workers-icon",
+    "https://developers.cloudflare.com/workers/",
+  ),
+  durableObjects: new Tech(
+    "Durable Objects",
+    "text-cloudflare",
+    "https://developers.cloudflare.com/durable-objects/",
+    DurableObjectsIcon,
+  ),
 };
 
 const allProjects = import.meta.glob("/src/projects/*/*.svx", {
@@ -53,7 +63,11 @@ function projectGroup(path: string, name: string, iconClasses: string) {
 function makeLink(link: { type: string; value: string }) {
   switch (link.type) {
     case "modrinth":
-      return new Link("Modrinth", `https://modrinth.com/mod/${link.value}`, "text-modrinth", ModrinthIcon);
+      return new Link(
+        "Modrinth",
+        `https://modrinth.com/mod/${link.value}`,
+        "iconify simple-icons--modrinth bg-modrinth",
+      );
     case "gpp":
       return new Link(
         "Gradle Plugin Portal",

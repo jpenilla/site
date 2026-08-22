@@ -11,7 +11,8 @@ technologies:
   - sqlite
   - drizzle
   - bun
-  - cloudflare
+  - cloudflareWorkers
+  - durableObjects
 ---
 
 Web app and API for coordinating updates to [Paper](/projects#paper)'s large

@@ -9,7 +9,7 @@ technologies:
   - vite
   - graphQl
   - bun
-  - cloudflare
+  - cloudflareWorkers
 links:
   - { type: "homepage", value: "https://fill-ui.papermc.io" }
 ---

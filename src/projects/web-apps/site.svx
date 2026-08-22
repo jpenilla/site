@@ -8,7 +8,7 @@ technologies:
   - tailwind
   - vite
   - bun
-  - cloudflare
+  - cloudflareWorkers
 ---
 
 Personal portfolio website (this website).

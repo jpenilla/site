@@ -23,6 +23,7 @@ export class Tech {
     public readonly name: string,
     public readonly iconClasses: string,
     public readonly url: string,
+    public readonly iconComponent?: Component,
   ) {}
 }
 
