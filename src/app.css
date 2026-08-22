@@ -2,7 +2,7 @@
 @plugin "@tailwindcss/typography";
 
 @plugin "@iconify/tailwind4" {
-  prefixes: logos, ri;
+  prefixes: logos, ri, simple-icons;
 }
 
 @plugin "daisyui" {
@@ -16,4 +16,10 @@
   --color-discord: #5865f2;
   --color-modrinth: #00af5c;
   --color-gradle: #209bc4;
+  --color-drizzle: #000;
+  --color-sqlite: #0f80cc;
+}
+
+[data-theme="dark"] {
+  --color-drizzle: #c5f74f;
 }
