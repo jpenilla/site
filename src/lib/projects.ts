@@ -18,11 +18,7 @@ const tech: Record<string, Tech> = {
   hono: new Tech("Hono", "iconify-color logos--hono", "https://hono.dev"),
   drizzle: new Tech("Drizzle ORM", "iconify simple-icons--drizzle bg-drizzle", "https://orm.drizzle.team"),
   sqlite: new Tech("SQLite", "iconify simple-icons--sqlite bg-sqlite", "https://sqlite.org"),
-  cloudflareWorkers: new Tech(
-    "Cloudflare Workers",
-    "iconify-color logos--cloudflare-workers-icon",
-    "https://developers.cloudflare.com/workers/",
-  ),
+  cloudflare: new Tech("Cloudflare", "iconify-color logos--cloudflare-icon", "https://www.cloudflare.com"),
 };
 
 const allProjects = import.meta.glob("/src/projects/*/*.svx", {
