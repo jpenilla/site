@@ -1,5 +1,4 @@
 import { Link, ProjectGroup, ProjectInfo, Tech } from "./types";
-import DurableObjectsIcon from "./components/DurableObjectsIcon.svelte";
 import { type MetadataMapper, withMetadata } from "$lib/util";
 
 const tech: Record<string, Tech> = {
@@ -23,12 +22,6 @@ const tech: Record<string, Tech> = {
     "Cloudflare Workers",
     "iconify-color logos--cloudflare-workers-icon",
     "https://developers.cloudflare.com/workers/",
-  ),
-  durableObjects: new Tech(
-    "Durable Objects",
-    "text-cloudflare",
-    "https://developers.cloudflare.com/durable-objects/",
-    DurableObjectsIcon,
   ),
 };
 

@@ -78,12 +78,7 @@
         {#each project.technologies as tech, index (index)}
           <li class="tooltip" data-tip={tech.name}>
             <a aria-label="{tech.name} Website" href={tech.url} target="_blank" rel="noopener noreferrer" class="p-1">
-              {#if tech.iconComponent}
-                {@const IconComponent = tech.iconComponent}
-                <IconComponent aria-hidden="true" class="size-5 {tech.iconClasses}" />
-              {:else}
-                <span aria-hidden="true" class="size-5 {tech.iconClasses}"></span>
-              {/if}
+              <span aria-hidden="true" class="size-5 {tech.iconClasses}"></span>
             </a>
           </li>
         {/each}
