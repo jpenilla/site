@@ -27,7 +27,7 @@
   target="_blank"
   rel="noopener noreferrer"
   class={[
-    "btn h-8 min-h-8 border border-base-content/10 bg-base-100 px-2 font-normal text-base-content shadow-none btn-ghost btn-sm hover:bg-base-300/50",
+    "btn h-8 min-h-8 border border-base-content/10 bg-base-100 btn-ghost px-2 font-normal text-base-content shadow-none btn-sm hover:bg-base-300/50",
     joined ? "join-item" : "rounded-md",
   ]}
   {title}
