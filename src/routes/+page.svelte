@@ -27,7 +27,7 @@
     </h3>
     <div class="prose prose-sm flex flex-col">
       <span class="font-semibold text-base-content">Ira A. Fulton Schools of Engineering</span>
-      <span>Master of Science in Software Engineering, Graduating May 2027</span>
+      <span>Master of Science in Software Engineering, Graduating December 2027</span>
     </div>
   </div>
 </div>
